@@ -28,17 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.ButtonRed = new System.Windows.Forms.Button();
             this.buttonDel = new System.Windows.Forms.Button();
             this.ButtonUpdate = new System.Windows.Forms.Button();
+            this.clientViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clientFIODataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView
             // 
+            this.dataGridView.AutoGenerateColumns = false;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn,
+            this.clientFIODataGridViewTextBoxColumn});
+            this.dataGridView.DataSource = this.clientViewModelBindingSource;
             this.dataGridView.Location = new System.Drawing.Point(13, 13);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowTemplate.Height = 24;
@@ -85,6 +95,22 @@
             this.ButtonUpdate.UseVisualStyleBackColor = true;
             this.ButtonUpdate.Click += new System.EventHandler(this.ButtonUpdate_Click);
             // 
+            // clientViewModelBindingSource
+            // 
+            this.clientViewModelBindingSource.DataSource = typeof(AbstractSweetShopServiceDAL.ViewModels.ClientViewModel);
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            // 
+            // clientFIODataGridViewTextBoxColumn
+            // 
+            this.clientFIODataGridViewTextBoxColumn.DataPropertyName = "ClientFIO";
+            this.clientFIODataGridViewTextBoxColumn.HeaderText = "ClientFIO";
+            this.clientFIODataGridViewTextBoxColumn.Name = "clientFIODataGridViewTextBoxColumn";
+            // 
             // FormClients
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -98,6 +124,7 @@
             this.Name = "FormClients";
             this.Text = "FormClient";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -109,5 +136,8 @@
         private System.Windows.Forms.Button ButtonRed;
         private System.Windows.Forms.Button buttonDel;
         private System.Windows.Forms.Button ButtonUpdate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clientFIODataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource clientViewModelBindingSource;
     }
 }

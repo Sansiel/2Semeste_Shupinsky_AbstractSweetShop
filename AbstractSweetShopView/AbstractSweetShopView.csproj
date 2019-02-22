@@ -57,6 +57,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormCandy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCandy.Designer.cs">
+      <DependentUpon>FormCandy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCandyMaterial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCandyMaterial.Designer.cs">
+      <DependentUpon>FormCandyMaterial.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormClient.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,6 +81,12 @@
     <Compile Include="FormClients.Designer.cs">
       <DependentUpon>FormClients.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormCreateOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCreateOrder.Designer.cs">
+      <DependentUpon>FormCreateOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,11 +95,20 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormCandy.resx">
+      <DependentUpon>FormCandy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCandyMaterial.resx">
+      <DependentUpon>FormCandyMaterial.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormClient.resx">
       <DependentUpon>FormClient.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormClients.resx">
       <DependentUpon>FormClients.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCreateOrder.resx">
+      <DependentUpon>FormCreateOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
@@ -96,6 +123,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\AbstractSweetShopServiceDAL.ViewModels.CandyMaterialViewModel.datasource" />
+    <None Include="Properties\DataSources\AbstractSweetShopServiceDAL.ViewModels.CandyViewModel.datasource" />
+    <None Include="Properties\DataSources\AbstractSweetShopServiceDAL.ViewModels.ClientViewModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

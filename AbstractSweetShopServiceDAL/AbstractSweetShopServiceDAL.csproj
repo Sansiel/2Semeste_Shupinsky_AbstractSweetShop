@@ -40,12 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BindingModels\ClientBindingModel.cs" />
+    <Compile Include="BindingModels\BuyerBindingModel.cs" />
     <Compile Include="BindingModels\CandyBindingModel.cs" />
     <Compile Include="BindingModels\CandyMaterialBindingModel.cs" />
     <Compile Include="BindingModels\MaterialBindingModel.cs" />
-    <Compile Include="BindingModels\OrderBindingModel.cs" />
-    <Compile Include="Interfaces\IClientService.cs" />
+    <Compile Include="BindingModels\JobBindingModel.cs" />
+    <Compile Include="Interfaces\IBuyerService.cs" />
     <Compile Include="Interfaces\ICandyMaterialService.cs" />
     <Compile Include="Interfaces\ICandyService.cs" />
     <Compile Include="Interfaces\IMainService.cs" />
@@ -53,9 +53,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CandyMaterialViewModel.cs" />
     <Compile Include="ViewModels\CandyViewModel.cs" />
-    <Compile Include="ViewModels\ClientViewModel.cs" />
+    <Compile Include="ViewModels\BuyerViewModel.cs" />
     <Compile Include="ViewModels\MaterialViewModel.cs" />
-    <Compile Include="ViewModels\OrderViewModel.cs" />
+    <Compile Include="ViewModels\JobViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AbstractSweetShopModel\AbstractSweetShopModel.csproj">

@@ -1,6 +1,6 @@
 ﻿namespace AbstractSweetShopView
 {
-    partial class FormClients
+    partial class FormBuyers
     {
         /// <summary>
         /// Required designer variable.
@@ -63,13 +63,13 @@
             // 
             // clientFIODataGridViewTextBoxColumn
             // 
-            this.clientFIODataGridViewTextBoxColumn.DataPropertyName = "ClientFIO";
-            this.clientFIODataGridViewTextBoxColumn.HeaderText = "ClientFIO";
+            this.clientFIODataGridViewTextBoxColumn.DataPropertyName = "BuyerFIO";
+            this.clientFIODataGridViewTextBoxColumn.HeaderText = "BuyerFIO";
             this.clientFIODataGridViewTextBoxColumn.Name = "clientFIODataGridViewTextBoxColumn";
             // 
             // clientViewModelBindingSource
             // 
-            this.clientViewModelBindingSource.DataSource = typeof(AbstractSweetShopServiceDAL.ViewModels.ClientViewModel);
+            this.clientViewModelBindingSource.DataSource = typeof(AbstractSweetShopServiceDAL.ViewModels.BuyerViewModel);
             // 
             // buttonAdd
             // 

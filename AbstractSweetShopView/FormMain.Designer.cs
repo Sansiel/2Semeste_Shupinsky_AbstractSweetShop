@@ -128,14 +128,14 @@
             // 
             // clientIdDataGridViewTextBoxColumn
             // 
-            this.clientIdDataGridViewTextBoxColumn.DataPropertyName = "ClientId";
-            this.clientIdDataGridViewTextBoxColumn.HeaderText = "ClientId";
+            this.clientIdDataGridViewTextBoxColumn.DataPropertyName = "BuyerId";
+            this.clientIdDataGridViewTextBoxColumn.HeaderText = "BuyerId";
             this.clientIdDataGridViewTextBoxColumn.Name = "clientIdDataGridViewTextBoxColumn";
             // 
             // clientFIODataGridViewTextBoxColumn
             // 
-            this.clientFIODataGridViewTextBoxColumn.DataPropertyName = "ClientFIO";
-            this.clientFIODataGridViewTextBoxColumn.HeaderText = "ClientFIO";
+            this.clientFIODataGridViewTextBoxColumn.DataPropertyName = "BuyerFIO";
+            this.clientFIODataGridViewTextBoxColumn.HeaderText = "BuyerFIO";
             this.clientFIODataGridViewTextBoxColumn.Name = "clientFIODataGridViewTextBoxColumn";
             // 
             // candyIdDataGridViewTextBoxColumn
@@ -182,7 +182,7 @@
             // 
             // orderViewModelBindingSource
             // 
-            this.orderViewModelBindingSource.DataSource = typeof(AbstractSweetShopServiceDAL.ViewModels.OrderViewModel);
+            this.orderViewModelBindingSource.DataSource = typeof(AbstractSweetShopServiceDAL.ViewModels.JobViewModel);
             // 
             // buttonCreateOrder
             // 

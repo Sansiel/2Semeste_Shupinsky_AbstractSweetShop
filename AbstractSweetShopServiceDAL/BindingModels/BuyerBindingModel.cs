@@ -1,8 +1,8 @@
 ﻿namespace AbstractSweetShopServiceDAL.BindingModels
 {
-    public class ClientBindingModel
+    public class BuyerBindingModel
     {
         public int Id { get; set; }
-        public string ClientFIO { get; set; }
+        public string BuyerFIO { get; set; }
     }
 }

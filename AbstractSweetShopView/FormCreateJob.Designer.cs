@@ -1,6 +1,6 @@
 ﻿namespace AbstractSweetShopView
 {
-    partial class FormCreateOrder
+    partial class FormCreateJob
     {
         /// <summary>
         /// Required designer variable.
@@ -92,7 +92,7 @@
             // 
             // clientViewModelBindingSource
             // 
-            this.clientViewModelBindingSource.DataSource = typeof(AbstractSweetShopServiceDAL.ViewModels.ClientViewModel);
+            this.clientViewModelBindingSource.DataSource = typeof(AbstractSweetShopServiceDAL.ViewModels.BuyerViewModel);
             // 
             // comboBoxCandy
             // 

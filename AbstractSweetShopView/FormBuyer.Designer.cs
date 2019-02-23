@@ -1,6 +1,6 @@
 ﻿namespace AbstractSweetShopView
 {
-    partial class FormClient
+    partial class FormBuyer
     {
         /// <summary>
         /// Required designer variable.

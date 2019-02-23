@@ -1,6 +1,6 @@
 ﻿namespace AbstractSweetShopModel
 {
-    public enum OrderStatus
+    public enum JobStatus
     {
         Принят = 0,
         Выполняется = 1,

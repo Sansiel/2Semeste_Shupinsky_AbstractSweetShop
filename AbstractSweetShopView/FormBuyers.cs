@@ -7,14 +7,14 @@ using Unity;
 
 namespace AbstractSweetShopView
 {
-    public partial class FormClients : Form
+    public partial class FormBuyers : Form
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
 
-        private readonly IClientService service;
+        private readonly IBuyerService service;
 
-        public FormClients(IClientService service)
+        public FormBuyers(IBuyerService service)
         {
             InitializeComponent();
             this.service = service;
@@ -29,7 +29,7 @@ namespace AbstractSweetShopView
         {
             try
             {
-                List<ClientViewModel> list = service.GetList();
+                List<BuyerViewModel> list = service.GetList();
                 if (list != null)
                 {
                     dataGridView.DataSource = list;
@@ -45,7 +45,7 @@ namespace AbstractSweetShopView
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormClient>();
+            var form = Container.Resolve<FormBuyer>();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
@@ -56,7 +56,7 @@ namespace AbstractSweetShopView
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                var form = Container.Resolve<FormClient>();
+                var form = Container.Resolve<FormBuyer>();
                 form.Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 if (form.ShowDialog() == DialogResult.OK)
                 {

@@ -6,16 +6,16 @@ namespace AbstractSweetShopServiceImplementList
     class DataListSingleton
     {
         private static DataListSingleton instance;
-        public List<Client> Clients { get; set; }
+        public List<Buyer> Clients { get; set; }
         public List<Material> Materials { get; set; }
-        public List<Order> Orders { get; set; }
+        public List<Job> Orders { get; set; }
         public List<Candy> Candies { get; set; }
         public List<CandyMaterial> CandyMaterials { get; set; }
         private DataListSingleton()
         {
-            Clients = new List<Client>();
+            Clients = new List<Buyer>();
 			Materials = new List<Material>();
-            Orders = new List<Order>();
+            Orders = new List<Job>();
 			Candies = new List<Candy>();
 			CandyMaterials = new List<CandyMaterial>();
         }

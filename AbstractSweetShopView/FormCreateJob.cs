@@ -8,18 +8,18 @@ using Unity;
 
 namespace AbstractSweetShopView
 {
-    public partial class FormCreateOrder : Form
+    public partial class FormCreateJob : Form
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
 
-        private readonly IClientService serviceC;
+        private readonly IBuyerService serviceC;
 
         private readonly ICandyService serviceP;
 
         private readonly IMainService serviceM;
 
-        public FormCreateOrder(IClientService serviceC, ICandyService serviceP, IMainService serviceM)
+        public FormCreateJob(IBuyerService serviceC, ICandyService serviceP, IMainService serviceM)
         {
             
             InitializeComponent();
@@ -31,10 +31,10 @@ namespace AbstractSweetShopView
         {
             try
             {
-                List<ClientViewModel> listC = serviceC.GetList();
+                List<BuyerViewModel> listC = serviceC.GetList();
                 if (listC != null)
                 {
-                    comboBoxClient.DisplayMember = "ClientFIO";
+                    comboBoxClient.DisplayMember = "BuyerFIO";
                     comboBoxClient.ValueMember = "Id";
                     comboBoxClient.DataSource = listC;
                     comboBoxClient.SelectedItem = null;
@@ -108,9 +108,9 @@ namespace AbstractSweetShopView
             }
             try
             {
-                serviceM.CreateOrder(new OrderBindingModel
+                serviceM.CreateOrder(new JobBindingModel
                 {
-                    ClientId = Convert.ToInt32(comboBoxClient.SelectedValue),
+                    BuyerId = Convert.ToInt32(comboBoxClient.SelectedValue),
                     CandyId = Convert.ToInt32(comboBoxCandy.SelectedValue),
                     Count = Convert.ToInt32(textBoxCount.Text),
                     Sum = Convert.ToInt32(textBoxSum.Text)

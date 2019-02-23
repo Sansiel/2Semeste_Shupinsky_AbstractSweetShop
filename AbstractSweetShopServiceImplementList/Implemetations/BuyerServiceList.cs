@@ -7,16 +7,16 @@ using System.Collections.Generic;
 
 namespace AbstractSweetShopServiceImplementList.Implemetations
 {
-    public class ClientServiceList : IClientService
+    public class BuyerServiceList : IBuyerService
     {
         private DataListSingleton source;
 
-        public ClientServiceList()
+        public BuyerServiceList()
         {
             source = DataListSingleton.GetInstance();
         }
 
-        public void AddElement(ClientBindingModel model)
+        public void AddElement(BuyerBindingModel model)
         {
             int maxId = 0;
             for (int i = 0; i < source.Clients.Count; ++i)
@@ -25,15 +25,15 @@ namespace AbstractSweetShopServiceImplementList.Implemetations
                 {
                     maxId = source.Clients[i].Id;
                 }
-                if (source.Clients[i].ClientFIO == model.ClientFIO)
+                if (source.Clients[i].BuyerFIO == model.BuyerFIO)
                 {
                     throw new Exception("Уже есть клиент с таким ФИО");
                 }
             }
-            source.Clients.Add(new Client
+            source.Clients.Add(new Buyer
             {
                 Id = maxId + 1,
-                ClientFIO = model.ClientFIO
+                BuyerFIO = model.BuyerFIO
             });
         }
 
@@ -50,37 +50,37 @@ namespace AbstractSweetShopServiceImplementList.Implemetations
             throw new Exception("Элемент не найден");
         }
 
-        public ClientViewModel GetElement(int id)
+        public BuyerViewModel GetElement(int id)
         {
             for (int i = 0; i < source.Clients.Count; ++i)
             {
                 if (source.Clients[i].Id == id)
                 {
-                    return new ClientViewModel
+                    return new BuyerViewModel
                     {
                         Id = source.Clients[i].Id,
-                        ClientFIO = source.Clients[i].ClientFIO
+                        BuyerFIO = source.Clients[i].BuyerFIO
                     };
                 }
             }
             throw new Exception("Элемент не найден");
         }
 
-        public List<ClientViewModel> GetList()
+        public List<BuyerViewModel> GetList()
         {
-            List<ClientViewModel> result = new List<ClientViewModel>();
+            List<BuyerViewModel> result = new List<BuyerViewModel>();
             for (int i = 0; i < source.Clients.Count; ++i)
             {
-                result.Add(new ClientViewModel
+                result.Add(new BuyerViewModel
                 {
                     Id = source.Clients[i].Id,
-                    ClientFIO = source.Clients[i].ClientFIO
+                    BuyerFIO = source.Clients[i].BuyerFIO
                 });
             }
             return result;
         }
 
-        public void UpdElement(ClientBindingModel model)
+        public void UpdElement(BuyerBindingModel model)
         {
             int index = -1;
             for (int i = 0; i < source.Clients.Count; ++i)
@@ -89,7 +89,7 @@ namespace AbstractSweetShopServiceImplementList.Implemetations
                 {
                     index = i;
                 }
-                if (source.Clients[i].ClientFIO == model.ClientFIO &&
+                if (source.Clients[i].BuyerFIO == model.BuyerFIO &&
                 source.Clients[i].Id != model.Id)
                 {
                     throw new Exception("Уже есть клиент с таким ФИО");
@@ -99,7 +99,7 @@ namespace AbstractSweetShopServiceImplementList.Implemetations
             {
                 throw new Exception("Элемент не найден");
             }
-            source.Clients[index].ClientFIO = model.ClientFIO;
+            source.Clients[index].BuyerFIO = model.BuyerFIO;
         }
     }
 }

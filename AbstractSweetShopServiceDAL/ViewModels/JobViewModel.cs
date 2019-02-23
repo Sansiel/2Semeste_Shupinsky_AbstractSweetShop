@@ -1,10 +1,10 @@
 ﻿namespace AbstractSweetShopServiceDAL.ViewModels
 {
-    public class OrderViewModel
+    public class JobViewModel
     {
         public int Id { get; set; }
-        public int ClientId { get; set; }
-        public string ClientFIO { get; set; }
+        public int BuyerId { get; set; }
+        public string BuyerFIO { get; set; }
         public int CandyId { get; set; }
         public string CandyName { get; set; }
         public int Count { get; set; }

@@ -7,18 +7,18 @@ using Unity;
 
 namespace AbstractSweetShopView
 {
-    public partial class FormClient : Form
+    public partial class FormBuyer : Form
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
 
         public int Id { set { id = value; } }
 
-        private readonly IClientService service;
+        private readonly IBuyerService service;
 
         private int? id;
 
-        public FormClient(IClientService service)
+        public FormBuyer(IBuyerService service)
         {
             InitializeComponent();
             this.service = service;
@@ -35,17 +35,17 @@ namespace AbstractSweetShopView
             {
                 if (id.HasValue)
                 {
-                    service.UpdElement(new ClientBindingModel
+                    service.UpdElement(new BuyerBindingModel
                     {
                         Id = id.Value,
-                        ClientFIO = textBoxFIO.Text
+                        BuyerFIO = textBoxFIO.Text
                     });
                 }
                 else
                 {
-                    service.AddElement(new ClientBindingModel
+                    service.AddElement(new BuyerBindingModel
                     {
-                        ClientFIO = textBoxFIO.Text
+                        BuyerFIO = textBoxFIO.Text
                     });
                 }
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -70,10 +70,10 @@ namespace AbstractSweetShopView
             {
                 try
                 {
-                    ClientViewModel view = service.GetElement(id.Value);
+                    BuyerViewModel view = service.GetElement(id.Value);
                     if (view != null)
                     {
-                        textBoxFIO.Text = view.ClientFIO;
+                        textBoxFIO.Text = view.BuyerFIO;
                     }
                 }
                 catch (Exception ex)

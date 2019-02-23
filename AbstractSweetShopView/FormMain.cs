@@ -24,7 +24,7 @@ namespace AbstractSweetShopView
         {
             try
             {
-                List<OrderViewModel> list = service.GetList();
+                List<JobViewModel> list = service.GetList();
                 if (list != null) {
                     dataGridView.DataSource = list;
                     dataGridView.Columns[0].Visible = false;
@@ -43,7 +43,7 @@ namespace AbstractSweetShopView
 
         private void клиентыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormClients>();
+            var form = Container.Resolve<FormBuyers>();
             form.ShowDialog();
         }
 
@@ -61,7 +61,7 @@ namespace AbstractSweetShopView
 
         private void buttonCreateOrder_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormCreateOrder>();
+            var form = Container.Resolve<FormCreateJob>();
             form.ShowDialog();
             LoadData();
         }
@@ -73,7 +73,7 @@ namespace AbstractSweetShopView
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 try
                 {
-                    service.TakeOrderInWork(new OrderBindingModel { Id = id });
+                    service.TakeOrderInWork(new JobBindingModel { Id = id });
                     LoadData();
                 }
                 catch (Exception ex)
@@ -91,7 +91,7 @@ namespace AbstractSweetShopView
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 try
                 {
-                    service.FinishOrder(new OrderBindingModel { Id = id });
+                    service.FinishOrder(new JobBindingModel { Id = id });
                     LoadData();
                 }
                 catch (Exception ex)
@@ -109,7 +109,7 @@ namespace AbstractSweetShopView
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 try
                 {
-                    service.PayOrder(new OrderBindingModel { Id = id });
+                    service.PayOrder(new JobBindingModel { Id = id });
                     LoadData();
                 }
                 catch (Exception ex)

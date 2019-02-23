@@ -4,12 +4,12 @@ using System.Collections.Generic;
 
 namespace AbstractSweetShopServiceDAL.Interfaces
 {
-    public interface IClientService
+    public interface IBuyerService
     {
-        List<ClientViewModel> GetList();
-        ClientViewModel GetElement(int id);
-        void AddElement(ClientBindingModel model);
-        void UpdElement(ClientBindingModel model);
+        List<BuyerViewModel> GetList();
+        BuyerViewModel GetElement(int id);
+        void AddElement(BuyerBindingModel model);
+        void UpdElement(BuyerBindingModel model);
         void DelElement(int id);
     }
 }

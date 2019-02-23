@@ -26,7 +26,7 @@ namespace AbstractSweetShopView
         public static IUnityContainer BuildUnityContainer()
         {
             var currentContainer = new UnityContainer();
-            currentContainer.RegisterType<IClientService, ClientServiceList>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IBuyerService, BuyerServiceList>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IMaterialService, MaterialServiceList>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<ICandyService, CandyServiceList>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IMainService, MainServiceList>(new HierarchicalLifetimeManager());

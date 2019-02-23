@@ -69,23 +69,23 @@
     <Compile Include="FormCandyMaterial.Designer.cs">
       <DependentUpon>FormCandyMaterial.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormClient.cs">
+    <Compile Include="FormBuyer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormClient.Designer.cs">
-      <DependentUpon>FormClient.cs</DependentUpon>
+    <Compile Include="FormBuyer.Designer.cs">
+      <DependentUpon>FormBuyer.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormClients.cs">
+    <Compile Include="FormBuyers.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormClients.Designer.cs">
-      <DependentUpon>FormClients.cs</DependentUpon>
+    <Compile Include="FormBuyers.Designer.cs">
+      <DependentUpon>FormBuyers.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormCreateOrder.cs">
+    <Compile Include="FormCreateJob.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormCreateOrder.Designer.cs">
-      <DependentUpon>FormCreateOrder.cs</DependentUpon>
+    <Compile Include="FormCreateJob.Designer.cs">
+      <DependentUpon>FormCreateJob.cs</DependentUpon>
     </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
@@ -113,14 +113,14 @@
     <EmbeddedResource Include="FormCandyMaterial.resx">
       <DependentUpon>FormCandyMaterial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormClient.resx">
-      <DependentUpon>FormClient.cs</DependentUpon>
+    <EmbeddedResource Include="FormBuyer.resx">
+      <DependentUpon>FormBuyer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormClients.resx">
-      <DependentUpon>FormClients.cs</DependentUpon>
+    <EmbeddedResource Include="FormBuyers.resx">
+      <DependentUpon>FormBuyers.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormCreateOrder.resx">
-      <DependentUpon>FormCreateOrder.cs</DependentUpon>
+    <EmbeddedResource Include="FormCreateJob.resx">
+      <DependentUpon>FormCreateJob.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>

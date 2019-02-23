@@ -1,8 +1,8 @@
 ﻿namespace AbstractSweetShopServiceDAL.ViewModels
 {
-    public class ClientViewModel
+    public class BuyerViewModel
     {
         public int Id { get; set; }
-        public string ClientFIO { get; set; }
+        public string BuyerFIO { get; set; }
     }
 }

@@ -14,17 +14,17 @@ namespace AbstractSweetShopServiceImplementList.Implemetations
         {
             source = DataListSingleton.GetInstance();
         }
-        public List<OrderViewModel> GetList()
+        public List<JobViewModel> GetList()
         {
-            List<OrderViewModel> result = new List<OrderViewModel>();
+            List<JobViewModel> result = new List<JobViewModel>();
             for (int i = 0; i < source.Orders.Count; ++i)
             {
                 string clientFIO = string.Empty;
                 for (int j = 0; j < source.Clients.Count; ++j)
                 {
-                    if (source.Clients[j].Id == source.Orders[i].ClientId)
+                    if (source.Clients[j].Id == source.Orders[i].BuyerId)
                     {
-                        clientFIO = source.Clients[j].ClientFIO;
+                        clientFIO = source.Clients[j].BuyerFIO;
                         break;
                     }
                 }
@@ -37,11 +37,11 @@ namespace AbstractSweetShopServiceImplementList.Implemetations
                         break;
                     }
                 }
-                result.Add(new OrderViewModel
+                result.Add(new JobViewModel
                 {
                     Id = source.Orders[i].Id,
-                    ClientId = source.Orders[i].ClientId,
-                    ClientFIO = clientFIO,
+                    BuyerId = source.Orders[i].BuyerId,
+                    BuyerFIO = clientFIO,
                     CandyId = source.Orders[i].CandyId,
                     CandyName = CandyName,
                     Count = source.Orders[i].Count,
@@ -53,7 +53,7 @@ namespace AbstractSweetShopServiceImplementList.Implemetations
             }
             return result;
         }
-        public void CreateOrder(OrderBindingModel model)
+        public void CreateOrder(JobBindingModel model)
         {
             int maxId = 0;
             for (int i = 0; i < source.Orders.Count; ++i)
@@ -63,18 +63,18 @@ namespace AbstractSweetShopServiceImplementList.Implemetations
                     maxId = source.Clients[i].Id;
                 }
             }
-            source.Orders.Add(new Order
+            source.Orders.Add(new Job
             {
                 Id = maxId + 1,
-                ClientId = model.ClientId,
+                BuyerId = model.BuyerId,
                 CandyId = model.CandyId,
                 DateCreate = DateTime.Now,
                 Count = model.Count,
                 Sum = model.Sum,
-                Status = OrderStatus.Принят
+                Status = JobStatus.Принят
             });
         }
-        public void TakeOrderInWork(OrderBindingModel model)
+        public void TakeOrderInWork(JobBindingModel model)
         {
             int index = -1;
             for (int i = 0; i < source.Orders.Count; ++i)
@@ -89,14 +89,14 @@ namespace AbstractSweetShopServiceImplementList.Implemetations
             {
                 throw new Exception("Элемент не найден");
             }
-            if (source.Orders[index].Status != OrderStatus.Принят)
+            if (source.Orders[index].Status != JobStatus.Принят)
             {
                 throw new Exception("Заказ не в статусе \"Принят\"");
             }
             source.Orders[index].DateImplement = DateTime.Now;
-            source.Orders[index].Status = OrderStatus.Выполняется;
+            source.Orders[index].Status = JobStatus.Выполняется;
         }
-        public void FinishOrder(OrderBindingModel model)
+        public void FinishOrder(JobBindingModel model)
         {
             int index = -1;
             for (int i = 0; i < source.Orders.Count; ++i)
@@ -111,13 +111,13 @@ namespace AbstractSweetShopServiceImplementList.Implemetations
             {
                 throw new Exception("Элемент не найден");
             }
-            if (source.Orders[index].Status != OrderStatus.Выполняется)
+            if (source.Orders[index].Status != JobStatus.Выполняется)
             {
                 throw new Exception("Заказ не в статусе \"Выполняется\"");
             }
-            source.Orders[index].Status = OrderStatus.Готов;
+            source.Orders[index].Status = JobStatus.Готов;
         }
-        public void PayOrder(OrderBindingModel model)
+        public void PayOrder(JobBindingModel model)
         {
             int index = -1;
             for (int i = 0; i < source.Orders.Count; ++i)
@@ -132,11 +132,11 @@ namespace AbstractSweetShopServiceImplementList.Implemetations
             {
                 throw new Exception("Элемент не найден");
             }
-            if (source.Orders[index].Status != OrderStatus.Готов)
+            if (source.Orders[index].Status != JobStatus.Готов)
             {
                 throw new Exception("Заказ не в статусе \"Готов\"");
             }
-            source.Orders[index].Status = OrderStatus.Оплачен;
+            source.Orders[index].Status = JobStatus.Оплачен;
         }
     }
 }

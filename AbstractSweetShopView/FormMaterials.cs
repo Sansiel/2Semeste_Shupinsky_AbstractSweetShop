@@ -13,9 +13,9 @@ namespace AbstractSweetShopView
         [Dependency]
         public new IUnityContainer Container { get; set; }
 
-        private readonly ICandyMaterialService service;
+        private readonly IMaterialService service;
 
-        public FormMaterials(ICandyMaterialService service)
+        public FormMaterials(IMaterialService service)
         {
             InitializeComponent();
             this.service = service;
@@ -30,7 +30,7 @@ namespace AbstractSweetShopView
         {
             try
             {
-                List<CandyMaterialViewModel> list = service.GetList();
+                List<MaterialViewModel> list = service.GetList();
                 if (list != null)
                 {
                     dataGridView.DataSource = list;

@@ -1,26 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
+using AbstractSweetShopServiceDAL.BindingModels;
 using AbstractSweetShopServiceDAL.Interfaces;
 using AbstractSweetShopServiceDAL.ViewModels;
 using Unity;
+using System.Collections.Generic;
 
 namespace AbstractSweetShopView
 {
-    public partial class FormClients : Form
+    public partial class FormMaterials : Form
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
 
-        private readonly IClientService service;
+        private readonly ICandyMaterialService service;
 
-        public FormClients(IClientService service)
+        public FormMaterials(ICandyMaterialService service)
         {
             InitializeComponent();
             this.service = service;
         }
-
-        private void FormClients_Load(object sender, EventArgs e)
+        
+        private void FormMaterial_Load(object sender, EventArgs e)
         {
             LoadData();
         }
@@ -29,12 +30,14 @@ namespace AbstractSweetShopView
         {
             try
             {
-                List<ClientViewModel> list = service.GetList();
+                List<CandyMaterialViewModel> list = service.GetList();
                 if (list != null)
                 {
                     dataGridView.DataSource = list;
                     dataGridView.Columns[0].Visible = false;
-                    dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dataGridView.Columns[1].Visible = false;
+                    dataGridView.Columns[2].Visible = false;
+                    dataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
             }
             catch (Exception ex)
@@ -45,18 +48,18 @@ namespace AbstractSweetShopView
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormClient>();
+            var form = Container.Resolve<FormMaterial>();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
             }
         }
 
-        private void ButtonRed_Click(object sender, EventArgs e)
+        private void buttonRed_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                var form = Container.Resolve<FormClient>();
+                var form = Container.Resolve<FormMaterial>();
                 form.Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 if (form.ShowDialog() == DialogResult.OK)
                 {
@@ -69,8 +72,7 @@ namespace AbstractSweetShopView
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                if (MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     int id =
                     Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
@@ -88,7 +90,7 @@ namespace AbstractSweetShopView
             }
         }
 
-        private void ButtonUpdate_Click(object sender, EventArgs e)
+        private void buttonUpdate_Click(object sender, EventArgs e)
         {
             LoadData();
         }

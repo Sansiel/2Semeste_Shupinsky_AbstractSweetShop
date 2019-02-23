@@ -111,6 +111,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FormCandyMaterial";
             this.Text = "FormCandyMaterial";
+            this.Load += new System.EventHandler(this.FormCandyMaterial_Load);
             ((System.ComponentModel.ISupportInitialize)(this.candyMaterialViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

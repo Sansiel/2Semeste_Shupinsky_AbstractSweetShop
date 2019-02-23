@@ -82,6 +82,7 @@
             this.Controls.Add(this.textBoxFIO);
             this.Name = "FormClient";
             this.Text = "FormClient";
+            this.Load += new System.EventHandler(this.FormClient_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

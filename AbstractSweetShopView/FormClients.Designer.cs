@@ -30,13 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clientFIODataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clientViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.buttonAdd = new System.Windows.Forms.Button();
             this.ButtonRed = new System.Windows.Forms.Button();
             this.buttonDel = new System.Windows.Forms.Button();
             this.ButtonUpdate = new System.Windows.Forms.Button();
-            this.clientViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clientFIODataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -54,6 +54,22 @@
             this.dataGridView.RowTemplate.Height = 24;
             this.dataGridView.Size = new System.Drawing.Size(626, 439);
             this.dataGridView.TabIndex = 0;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            // 
+            // clientFIODataGridViewTextBoxColumn
+            // 
+            this.clientFIODataGridViewTextBoxColumn.DataPropertyName = "ClientFIO";
+            this.clientFIODataGridViewTextBoxColumn.HeaderText = "ClientFIO";
+            this.clientFIODataGridViewTextBoxColumn.Name = "clientFIODataGridViewTextBoxColumn";
+            // 
+            // clientViewModelBindingSource
+            // 
+            this.clientViewModelBindingSource.DataSource = typeof(AbstractSweetShopServiceDAL.ViewModels.ClientViewModel);
             // 
             // buttonAdd
             // 
@@ -95,22 +111,6 @@
             this.ButtonUpdate.UseVisualStyleBackColor = true;
             this.ButtonUpdate.Click += new System.EventHandler(this.ButtonUpdate_Click);
             // 
-            // clientViewModelBindingSource
-            // 
-            this.clientViewModelBindingSource.DataSource = typeof(AbstractSweetShopServiceDAL.ViewModels.ClientViewModel);
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            // 
-            // clientFIODataGridViewTextBoxColumn
-            // 
-            this.clientFIODataGridViewTextBoxColumn.DataPropertyName = "ClientFIO";
-            this.clientFIODataGridViewTextBoxColumn.HeaderText = "ClientFIO";
-            this.clientFIODataGridViewTextBoxColumn.Name = "clientFIODataGridViewTextBoxColumn";
-            // 
             // FormClients
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -123,6 +123,7 @@
             this.Controls.Add(this.dataGridView);
             this.Name = "FormClients";
             this.Text = "FormClient";
+            this.Load += new System.EventHandler(this.FormClients_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);

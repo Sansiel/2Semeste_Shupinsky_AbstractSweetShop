@@ -3,6 +3,8 @@ using System.Windows.Forms;
 using AbstractSweetShopServiceDAL.BindingModels;
 using AbstractSweetShopServiceDAL.Interfaces;
 using Unity;
+using System.Collections.Generic;
+using AbstractSweetShopServiceDAL.ViewModels;
 
 namespace AbstractSweetShopView
 {
@@ -20,6 +22,22 @@ namespace AbstractSweetShopView
         }
         private void LoadData()
         {
+            try
+            {
+                List<OrderViewModel> list = service.GetList();
+                if (list != null) {
+                    dataGridView.DataSource = list;
+                    dataGridView.Columns[0].Visible = false;
+                    dataGridView.Columns[1].Visible = false;
+                    dataGridView.Columns[3].Visible = false;
+                    dataGridView.Columns[5].Visible = false;
+                    dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
 
@@ -31,7 +49,7 @@ namespace AbstractSweetShopView
 
         private void компонентыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormCandyMaterial>();
+            var form = Container.Resolve<FormMaterials>();
             form.ShowDialog();
         }
 
@@ -103,6 +121,11 @@ namespace AbstractSweetShopView
         }
 
         private void buttonUpdate_Click(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        private void LoadData(object sender, EventArgs e)
         {
             LoadData();
         }

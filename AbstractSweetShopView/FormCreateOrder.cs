@@ -21,6 +21,7 @@ namespace AbstractSweetShopView
 
         public FormCreateOrder(IClientService serviceC, ICandyService serviceP, IMainService serviceM)
         {
+            
             InitializeComponent();
             this.serviceC = serviceC;
             this.serviceP = serviceP;

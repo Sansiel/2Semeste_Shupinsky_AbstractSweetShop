@@ -27,7 +27,7 @@ namespace AbstractSweetShopView
             this.service = service;
         }
 
-        private void FormDress_Load(object sender, EventArgs e)
+        private void FormCandy_Load(object sender, EventArgs e)
         {
             if (id.HasValue)
             {
@@ -65,8 +65,9 @@ namespace AbstractSweetShopView
                     dataGridView.Columns[0].Visible = false;
                     dataGridView.Columns[1].Visible = false;
                     dataGridView.Columns[2].Visible = false;
-                    dataGridView.Columns[3].AutoSizeMode =
-                    DataGridViewAutoSizeColumnMode.Fill;
+                    dataGridView.Columns[4].Visible = false;
+                    dataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    
                 }
             }
             catch (Exception ex)

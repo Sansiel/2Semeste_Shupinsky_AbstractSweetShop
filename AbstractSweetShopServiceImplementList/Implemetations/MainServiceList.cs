@@ -4,6 +4,7 @@ using AbstractSweetShopServiceDAL.Interfaces;
 using AbstractSweetShopServiceDAL.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AbstractSweetShopServiceImplementList.Implemetations
 {
@@ -16,54 +17,24 @@ namespace AbstractSweetShopServiceImplementList.Implemetations
         }
         public List<JobViewModel> GetList()
         {
-            List<JobViewModel> result = new List<JobViewModel>();
-            for (int i = 0; i < source.Jobs.Count; ++i)
+            List<JobViewModel> result = source.Jobs.Select(rec => new JobViewModel
             {
-                string clientFIO = string.Empty;
-                for (int j = 0; j < source.Buyers.Count; ++j)
-                {
-                    if (source.Buyers[j].Id == source.Jobs[i].BuyerId)
-                    {
-                        clientFIO = source.Buyers[j].BuyerFIO;
-                        break;
-                    }
-                }
-                string CandyName = string.Empty;
-                for (int j = 0; j < source.Candies.Count; ++j)
-                {
-                    if (source.Candies[j].Id == source.Jobs[i].CandyId)
-                    {
-                        CandyName = source.Candies[j].CandyName;
-                        break;
-                    }
-                }
-                result.Add(new JobViewModel
-                {
-                    Id = source.Jobs[i].Id,
-                    BuyerId = source.Jobs[i].BuyerId,
-                    BuyerFIO = clientFIO,
-                    CandyId = source.Jobs[i].CandyId,
-                    CandyName = CandyName,
-                    Count = source.Jobs[i].Count,
-                    Sum = source.Jobs[i].Sum,
-                    DateCreate = source.Jobs[i].DateCreate.ToLongDateString(),
-                    DateImplement = source.Jobs[i].DateImplement?.ToLongDateString(),
-                    Status = source.Jobs[i].Status.ToString()
-                });
-            }
+                Id = rec.Id,
+                BuyerId = rec.BuyerId,
+                CandyId = rec.CandyId,
+                DateCreate = rec.DateCreate.ToLongDateString(),
+                DateImplement = rec.DateImplement?.ToLongDateString(),
+                Status = rec.Status.ToString(),
+                Count = rec.Count,
+                Sum = rec.Sum,
+                BuyerFIO = source.Buyers.FirstOrDefault(recC => recC.Id == rec.BuyerId)?.BuyerFIO,
+                CandyName = source.Candies.FirstOrDefault(recP => recP.Id == rec.CandyId)?.CandyName,
+            }).ToList();
             return result;
         }
         public void CreateOrder(JobBindingModel model)
         {
-            int maxId = 0;
-            for (int i = 0; i < source.Jobs.Count; ++i)
-            {
-                if (source.Jobs[i].Id > maxId)
-                {
-                    maxId = source.Buyers[i].Id;
-                }
-            }
-            source.Jobs.Add(new Job
+            int maxId = source.Jobs.Count > 0 ? source.Jobs.Max(rec => rec.Id) : 0; source.Jobs.Add(new Job
             {
                 Id = maxId + 1,
                 BuyerId = model.BuyerId,
@@ -76,67 +47,43 @@ namespace AbstractSweetShopServiceImplementList.Implemetations
         }
         public void TakeOrderInWork(JobBindingModel model)
         {
-            int index = -1;
-            for (int i = 0; i < source.Jobs.Count; ++i)
-            {
-                if (source.Jobs[i].Id == model.Id)
-                {
-                    index = i;
-                    break;
-                }
-            }
-            if (index == -1)
+            Job element = source.Jobs.FirstOrDefault(rec => rec.Id == model.Id);
+            if (element == null)
             {
                 throw new Exception("Элемент не найден");
             }
-            if (source.Jobs[index].Status != JobStatus.Принят)
+            if (element.Status != JobStatus.Принят)
             {
                 throw new Exception("Заказ не в статусе \"Принят\"");
             }
-            source.Jobs[index].DateImplement = DateTime.Now;
-            source.Jobs[index].Status = JobStatus.Выполняется;
+            element.DateImplement = DateTime.Now;
+            element.Status = JobStatus.Выполняется;
         }
         public void FinishOrder(JobBindingModel model)
         {
-            int index = -1;
-            for (int i = 0; i < source.Jobs.Count; ++i)
-            {
-                if (source.Buyers[i].Id == model.Id)
-                {
-                    index = i;
-                    break;
-                }
-            }
-            if (index == -1)
+            Job element = source.Jobs.FirstOrDefault(rec => rec.Id == model.Id);
+            if (element == null)
             {
                 throw new Exception("Элемент не найден");
             }
-            if (source.Jobs[index].Status != JobStatus.Выполняется)
+            if (element.Status != JobStatus.Выполняется)
             {
                 throw new Exception("Заказ не в статусе \"Выполняется\"");
             }
-            source.Jobs[index].Status = JobStatus.Готов;
+            element.Status = JobStatus.Готов;
         }
         public void PayOrder(JobBindingModel model)
         {
-            int index = -1;
-            for (int i = 0; i < source.Jobs.Count; ++i)
-            {
-                if (source.Buyers[i].Id == model.Id)
-                {
-                    index = i;
-                    break;
-                }
-            }
-            if (index == -1)
+            Job element = source.Jobs.FirstOrDefault(rec => rec.Id == model.Id);
+            if (element == null)
             {
                 throw new Exception("Элемент не найден");
             }
-            if (source.Jobs[index].Status != JobStatus.Готов)
+            if (element.Status != JobStatus.Готов)
             {
                 throw new Exception("Заказ не в статусе \"Готов\"");
             }
-            source.Jobs[index].Status = JobStatus.Оплачен;
+            element.Status = JobStatus.Оплачен;
         }
     }
 }

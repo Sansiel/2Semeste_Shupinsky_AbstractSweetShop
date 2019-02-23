@@ -4,113 +4,68 @@ using AbstractSweetShopServiceDAL.Interfaces;
 using AbstractSweetShopServiceDAL.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AbstractSweetShopServiceImplementList.Implemetations
 {
     public class CandyServiceList : ICandyService
     {
         private DataListSingleton source;
+
         public CandyServiceList()
         {
             source = DataListSingleton.GetInstance();
         }
+
         public List<CandyViewModel> GetList()
         {
-            List<CandyViewModel> result = new List<CandyViewModel>();
-            for (int i = 0; i < source.Candies.Count; ++i)
+            List<CandyViewModel> result = source.Candies.Select(rec => new CandyViewModel
             {
-                // требуется дополнительно получить список компонентов для изделия и их количество
-                List<CandyMaterialViewModel> CandyMaterials = new List<CandyMaterialViewModel>();
-                for (int j = 0; j < source.CandyMaterials.Count; ++j)
+                Id = rec.Id,
+                CandyName = rec.CandyName,
+                Price = rec.Price,
+                CandyMaterials = source.CandyMaterials.Where(recPC => recPC.CandyId == rec.Id).Select(recPC => new CandyMaterialViewModel
                 {
-                    if (source.CandyMaterials[j].CandyId == source.Candies[i].Id)
-                    {
-                        string MaterialName = string.Empty;
-                        for (int k = 0; k < source.Materials.Count; ++k)
-                        {
-                            if (source.CandyMaterials[j].MaterialId == source.Materials[k].Id)
-                            {
-                                MaterialName = source.Materials[k].MaterialName;
-                                break;
-                            }
-                        }
-                        CandyMaterials.Add(new CandyMaterialViewModel
-                        {
-                            Id = source.CandyMaterials[j].Id,
-                            CandyId = source.CandyMaterials[j].CandyId,
-                            MaterialId = source.CandyMaterials[j].MaterialId,
-                            MaterialName = MaterialName,
-                            Count = source.CandyMaterials[j].Count
-                        });
-                    }
-                }
-                result.Add(new CandyViewModel
-                {
-                    Id = source.Candies[i].Id,
-                    CandyName = source.Candies[i].CandyName,
-                    Price = source.Candies[i].Price,
-                    CandyMaterials = CandyMaterials
-                });
-            }
+                    Id = recPC.Id,
+                    CandyId = recPC.CandyId,
+                    MaterialId = recPC.MaterialId,
+                    MaterialName = source.Materials.FirstOrDefault(recC => recC.Id == recPC.MaterialId)?.MaterialName,
+                    Count = recPC.Count
+                }).ToList()
+            }).ToList();
             return result;
         }
         public CandyViewModel GetElement(int id)
         {
-            for (int i = 0; i < source.Candies.Count; ++i)
+            Candy element = source.Candies.FirstOrDefault(rec => rec.Id == id);
+            if (element != null)
             {
-                // требуется дополнительно получить список компонентов для изделия и их количество
-                List<CandyMaterialViewModel> CandyMaterials = new List<CandyMaterialViewModel>();
-                for (int j = 0; j < source.CandyMaterials.Count; ++j)
+                return new CandyViewModel
                 {
-                    if (source.CandyMaterials[j].CandyId == source.Candies[i].Id)
+                    Id = element.Id,
+                    CandyName = element.CandyName,
+                    Price = element.Price,
+                    CandyMaterials = source.CandyMaterials.Where(recPC => recPC.CandyId == element.Id).Select(recPC => new CandyMaterialViewModel
                     {
-                        string MaterialName = string.Empty;
-                        for (int k = 0; k < source.Materials.Count; ++k)
-                        {
-                            if (source.CandyMaterials[j].MaterialId == source.Materials[k].Id)
-                            {
-                                MaterialName = source.Materials[k].MaterialName;
-                                break;
-                            }
-                        }
-                        CandyMaterials.Add(new CandyMaterialViewModel
-                        {
-                            Id = source.CandyMaterials[j].Id,
-                            CandyId = source.CandyMaterials[j].CandyId,
-                            MaterialId = source.CandyMaterials[j].MaterialId,
-                            MaterialName = MaterialName,
-                            Count = source.CandyMaterials[j].Count
-                        });
-                    }
-                }
-                if (source.Candies[i].Id == id)
-                {
-                    return new CandyViewModel
-                    {
-                        Id = source.Candies[i].Id,
-                        CandyName = source.Candies[i].CandyName,
-                        Price = source.Candies[i].Price,
-                        CandyMaterials = CandyMaterials
-                    };
-                }
+                        Id = recPC.Id,
+                        CandyId = recPC.CandyId,
+                        MaterialId = recPC.MaterialId,
+                        MaterialName = source.Materials.FirstOrDefault(recC => recC.Id == recPC.MaterialId)?.MaterialName,
+                        Count = recPC.Count
+                    }).ToList()
+                };
             }
             throw new Exception("Элемент не найден");
         }
 
         public void AddElement(CandyBindingModel model)
         {
-            int maxId = 0;
-            for (int i = 0; i < source.Candies.Count; ++i)
+            Candy element = source.Candies.FirstOrDefault(rec => rec.CandyName == model.CandyName);
+            if (element != null)
             {
-                if (source.Candies[i].Id > maxId)
-                {
-                    maxId = source.Candies[i].Id;
-                }
-                if (source.Candies[i].CandyName == model.CandyName)
-                {
-                    throw new Exception("Уже есть конфета с таким названием");
-                }
+                throw new Exception("Уже есть изделие с таким названием");
             }
+            int maxId = source.Candies.Count > 0 ? source.Candies.Max(rec => rec.Id) : 0;
             source.Candies.Add(new Candy
             {
                 Id = maxId + 1,
@@ -118,143 +73,90 @@ namespace AbstractSweetShopServiceImplementList.Implemetations
                 Price = model.Price
             });
             // компоненты для изделия
-            int maxPCId = 0;
-            for (int i = 0; i < source.CandyMaterials.Count; ++i)
+            int maxPCId = source.CandyMaterials.Count > 0 ? source.CandyMaterials.Max(rec => rec.Id) : 0;
+            // убираем дубли по компонентам 
+            var groupComponents = model.CandyMaterials.GroupBy(rec => rec.MaterialId).Select(rec => new
             {
-                if (source.CandyMaterials[i].Id > maxPCId)
-                {
-                    maxPCId = source.CandyMaterials[i].Id;
-                }
-            }
-            // убираем дубли по компонентам
-            for (int i = 0; i < model.CandyMaterials.Count; ++i)
-            {
-                for (int j = 1; j < model.CandyMaterials.Count; ++j)
-                {
-                    if (model.CandyMaterials[i].MaterialId ==
-                    model.CandyMaterials[j].MaterialId)
-                    {
-                        model.CandyMaterials[i].Count +=
-                        model.CandyMaterials[j].Count;
-                        model.CandyMaterials.RemoveAt(j--);
-                    }
-                }
-            }
+                MaterialId = rec.Key,
+                Count = rec.Sum(r => r.Count)
+            });
             // добавляем компоненты
-            for (int i = 0; i < model.CandyMaterials.Count; ++i)
+            foreach (var groupComponent in groupComponents)
             {
                 source.CandyMaterials.Add(new CandyMaterial
                 {
                     Id = ++maxPCId,
                     CandyId = maxId + 1,
-                    MaterialId = model.CandyMaterials[i].MaterialId,
-                    Count = model.CandyMaterials[i].Count
+                    MaterialId = groupComponent.MaterialId,
+                    Count = groupComponent.Count
                 });
             }
         }
+
         public void UpdElement(CandyBindingModel model)
         {
-            int index = -1;
-            for (int i = 0; i < source.Candies.Count; ++i)
+            Candy element = source.Candies.FirstOrDefault(rec => rec.CandyName == model.CandyName && rec.Id != model.Id);
+            if (element != null)
             {
-                if (source.Candies[i].Id == model.Id)
-                {
-                index = i;
-                }
-                if (source.Candies[i].CandyName == model.CandyName &&
-                source.Candies[i].Id != model.Id)
-                {
-                    throw new Exception("Уже есть конфета с таким названием");
-                }
+                throw new Exception("Уже есть изделие с таким названием");
             }
-            if (index == -1)
+            element = source.Candies.FirstOrDefault(rec => rec.Id == model.Id);
+            if (element == null)
             {
                 throw new Exception("Элемент не найден");
             }
-            source.Candies[index].CandyName = model.CandyName;
-            source.Candies[index].Price = model.Price;
-            int maxPCId = 0;
-            for (int i = 0; i < source.CandyMaterials.Count; ++i)
+            element.CandyName = model.CandyName; element.Price = model.Price;
+            int maxPCId = source.CandyMaterials.Count > 0 ? source.CandyMaterials.Max(rec => rec.Id) : 0;
+            // обновляем существуюущие компоненты 
+            var compIds = model.CandyMaterials.Select(rec => rec.MaterialId).Distinct();
+            var updateMaterials = source.CandyMaterials.Where(rec => rec.CandyId == model.Id && compIds.Contains(rec.MaterialId));
+            foreach (var updateMaterial in updateMaterials)
             {
-                if (source.CandyMaterials[i].Id > maxPCId)
-                {
-                    maxPCId = source.CandyMaterials[i].Id;
-                }
+                updateMaterial.Count = model.CandyMaterials.FirstOrDefault(rec => rec.Id == updateMaterial.Id).Count;
             }
-            // обновляем существуюущие компоненты
-            for (int i = 0; i < source.CandyMaterials.Count; ++i)
-            {
-                if (source.CandyMaterials[i].CandyId == model.Id)
+            source.CandyMaterials.RemoveAll(rec => rec.CandyId == model.Id && !compIds.Contains(rec.MaterialId));
+            // новые записи          
+            var groupMaterials = model.CandyMaterials
+                .Where(rec => rec.Id == 0)                  
+                .GroupBy(rec => rec.MaterialId)               
+                .Select(rec => new
                 {
-                    bool flag = true;
-                    for (int j = 0; j < model.CandyMaterials.Count; ++j)
-                    {
-                        // если встретили, то изменяем количество
-                        if (source.CandyMaterials[i].Id == model.CandyMaterials[j].Id)
-                        {
-                            source.CandyMaterials[i].Count = model.CandyMaterials[j].Count;
-                            flag = false;
-                            break;
-                        }
-                    }
-                    // если не встретили, то удаляем
-                    if (flag)
-                    {
-                        source.CandyMaterials.RemoveAt(i--);
-                    }
+                    MaterialId = rec.Key,
+                    Count = rec.Sum(r => r.Count)
+                });
+            foreach (var groupMaterial in groupMaterials)
+            {
+                CandyMaterial elementPC = source.CandyMaterials.FirstOrDefault(rec => rec.CandyId == model.Id && rec.MaterialId == groupMaterial.MaterialId);
+                if (elementPC != null)
+                {
+                    elementPC.Count += groupMaterial.Count;
                 }
-            }
-
-            // новые записи
-            for (int i = 0; i < model.CandyMaterials.Count; ++i)
-            {
-                if (model.CandyMaterials[i].Id == 0)
+                else
                 {
-                    // ищем дубли
-                    for (int j = 0; j < source.CandyMaterials.Count; ++j)
+                    source.CandyMaterials.Add(new CandyMaterial
                     {
-                        if (source.CandyMaterials[j].CandyId == model.Id &&
-                        source.CandyMaterials[j].MaterialId == model.CandyMaterials[i].MaterialId)
-                        {
-                            source.CandyMaterials[j].Count += model.CandyMaterials[i].Count;
-                            model.CandyMaterials[i].Id = source.CandyMaterials[j].Id;
-                            break;
-                        }
-                    }
-                    // если не нашли дубли, то новая запись
-                    if (model.CandyMaterials[i].Id == 0)
-                    {
-                        source.CandyMaterials.Add(new CandyMaterial
-                        {
-                            Id = ++maxPCId,
-                            CandyId = model.Id,
-                            MaterialId = model.CandyMaterials[i].MaterialId,
-                            Count = model.CandyMaterials[i].Count
-                        });
-                    }
+                        Id = ++maxPCId,
+                        CandyId = model.Id,
+                        MaterialId = groupMaterial.MaterialId,
+                        Count = groupMaterial.Count
+                    });
                 }
             }
         }
 
         public void DelElement(int id)
         {
-            // удаяем записи по компонентам при удалении изделия
-            for (int i = 0; i < source.CandyMaterials.Count; ++i)
+            Candy element = source.Candies.FirstOrDefault(rec => rec.Id == id);
+            if (element != null)
             {
-                if (source.CandyMaterials[i].CandyId == id)
-                {
-                    source.CandyMaterials.RemoveAt(i--);
-                }
+                // удаяем записи по компонентам при удалении изделия         
+                source.CandyMaterials.RemoveAll(rec => rec.CandyId == id);
+                source.Candies.Remove(element);
             }
-            for (int i = 0; i < source.Candies.Count; ++i)
+            else
             {
-                if (source.Candies[i].Id == id)
-                {
-                    source.Candies.RemoveAt(i);
-                    return;
-                }
+                throw new Exception("Элемент не найден");
             }
-            throw new Exception("Элемент не найден");
         }
     }
 }

@@ -57,6 +57,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormCandies.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCandies.Designer.cs">
+      <DependentUpon>FormCandies.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormCandy.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +113,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormCandies.resx">
+      <DependentUpon>FormCandies.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormCandy.resx">
       <DependentUpon>FormCandy.cs</DependentUpon>
     </EmbeddedResource>

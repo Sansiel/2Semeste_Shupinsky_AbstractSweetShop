@@ -71,7 +71,7 @@
             this.buttonCancelFIO.UseVisualStyleBackColor = true;
             this.buttonCancelFIO.Click += new System.EventHandler(this.buttonCancelFIO_Click);
             // 
-            // FormClient
+            // FormBuyer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -80,8 +80,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonSaveFIO);
             this.Controls.Add(this.textBoxFIO);
-            this.Name = "FormClient";
-            this.Text = "FormClient";
+            this.Name = "FormBuyer";
+            this.Text = "Клиент";
             this.Load += new System.EventHandler(this.FormClient_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

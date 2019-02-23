@@ -61,7 +61,7 @@
             // 
             this.textBoxCount.Location = new System.Drawing.Point(115, 48);
             this.textBoxCount.Name = "textBoxCount";
-            this.textBoxCount.Size = new System.Drawing.Size(158, 22);
+            this.textBoxCount.Size = new System.Drawing.Size(231, 22);
             this.textBoxCount.TabIndex = 2;
             // 
             // comboBoxMaterial
@@ -71,7 +71,7 @@
             this.comboBoxMaterial.FormattingEnabled = true;
             this.comboBoxMaterial.Location = new System.Drawing.Point(115, 7);
             this.comboBoxMaterial.Name = "comboBoxMaterial";
-            this.comboBoxMaterial.Size = new System.Drawing.Size(157, 24);
+            this.comboBoxMaterial.Size = new System.Drawing.Size(231, 24);
             this.comboBoxMaterial.TabIndex = 3;
             // 
             // candyMaterialViewModelBindingSource
@@ -90,7 +90,7 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(150, 97);
+            this.buttonCancel.Location = new System.Drawing.Point(224, 97);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(122, 23);
             this.buttonCancel.TabIndex = 5;
@@ -102,7 +102,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(282, 134);
+            this.ClientSize = new System.Drawing.Size(384, 134);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.comboBoxMaterial);
@@ -110,7 +110,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "FormCandyMaterial";
-            this.Text = "FormCandyMaterial";
+            this.Text = "Выбор материала для Конфеты";
             this.Load += new System.EventHandler(this.FormCandyMaterial_Load);
             ((System.ComponentModel.ISupportInitialize)(this.candyMaterialViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);

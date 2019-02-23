@@ -248,7 +248,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormMain";
-            this.Text = "FormMain";
+            this.Text = "Главаня";
             this.Load += new System.EventHandler(this.LoadData);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

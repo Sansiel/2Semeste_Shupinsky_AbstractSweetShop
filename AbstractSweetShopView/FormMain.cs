@@ -55,7 +55,7 @@ namespace AbstractSweetShopView
 
         private void изделияToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormCandy>();
+            var form = Container.Resolve<FormCandies>();
             form.ShowDialog();
         }
 

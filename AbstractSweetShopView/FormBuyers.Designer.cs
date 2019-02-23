@@ -111,7 +111,7 @@
             this.ButtonUpdate.UseVisualStyleBackColor = true;
             this.ButtonUpdate.Click += new System.EventHandler(this.ButtonUpdate_Click);
             // 
-            // FormClients
+            // FormBuyers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -121,8 +121,8 @@
             this.Controls.Add(this.ButtonRed);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.dataGridView);
-            this.Name = "FormClients";
-            this.Text = "FormClient";
+            this.Name = "FormBuyers";
+            this.Text = "Клиенты";
             this.Load += new System.EventHandler(this.FormClients_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientViewModelBindingSource)).EndInit();

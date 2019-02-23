@@ -1,6 +1,6 @@
 ﻿namespace AbstractSweetShopView
 {
-    partial class FormMaterials
+    partial class FormCandies
     {
         /// <summary>
         /// Required designer variable.
@@ -31,19 +31,15 @@
             this.components = new System.ComponentModel.Container();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.candyIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.materialIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.materialNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.countDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.candyMaterialViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.materialViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.candyNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.candyViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonRed = new System.Windows.Forms.Button();
             this.buttonDel = new System.Windows.Forms.Button();
             this.buttonUpdate = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.candyMaterialViewModelBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.materialViewModelBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.candyViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView
@@ -52,15 +48,13 @@
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
-            this.candyIdDataGridViewTextBoxColumn,
-            this.materialIdDataGridViewTextBoxColumn,
-            this.materialNameDataGridViewTextBoxColumn,
-            this.countDataGridViewTextBoxColumn});
-            this.dataGridView.DataSource = this.candyMaterialViewModelBindingSource;
-            this.dataGridView.Location = new System.Drawing.Point(12, 12);
+            this.candyNameDataGridViewTextBoxColumn,
+            this.priceDataGridViewTextBoxColumn});
+            this.dataGridView.DataSource = this.candyViewModelBindingSource;
+            this.dataGridView.Location = new System.Drawing.Point(29, 30);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowTemplate.Height = 24;
-            this.dataGridView.Size = new System.Drawing.Size(516, 439);
+            this.dataGridView.Size = new System.Drawing.Size(429, 310);
             this.dataGridView.TabIndex = 0;
             // 
             // idDataGridViewTextBoxColumn
@@ -69,43 +63,27 @@
             this.idDataGridViewTextBoxColumn.HeaderText = "Id";
             this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
             // 
-            // candyIdDataGridViewTextBoxColumn
+            // candyNameDataGridViewTextBoxColumn
             // 
-            this.candyIdDataGridViewTextBoxColumn.DataPropertyName = "CandyId";
-            this.candyIdDataGridViewTextBoxColumn.HeaderText = "CandyId";
-            this.candyIdDataGridViewTextBoxColumn.Name = "candyIdDataGridViewTextBoxColumn";
+            this.candyNameDataGridViewTextBoxColumn.DataPropertyName = "CandyName";
+            this.candyNameDataGridViewTextBoxColumn.HeaderText = "CandyName";
+            this.candyNameDataGridViewTextBoxColumn.Name = "candyNameDataGridViewTextBoxColumn";
             // 
-            // materialIdDataGridViewTextBoxColumn
+            // priceDataGridViewTextBoxColumn
             // 
-            this.materialIdDataGridViewTextBoxColumn.DataPropertyName = "MaterialId";
-            this.materialIdDataGridViewTextBoxColumn.HeaderText = "MaterialId";
-            this.materialIdDataGridViewTextBoxColumn.Name = "materialIdDataGridViewTextBoxColumn";
+            this.priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
+            this.priceDataGridViewTextBoxColumn.HeaderText = "Price";
+            this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
             // 
-            // materialNameDataGridViewTextBoxColumn
+            // candyViewModelBindingSource
             // 
-            this.materialNameDataGridViewTextBoxColumn.DataPropertyName = "MaterialName";
-            this.materialNameDataGridViewTextBoxColumn.HeaderText = "MaterialName";
-            this.materialNameDataGridViewTextBoxColumn.Name = "materialNameDataGridViewTextBoxColumn";
-            // 
-            // countDataGridViewTextBoxColumn
-            // 
-            this.countDataGridViewTextBoxColumn.DataPropertyName = "Count";
-            this.countDataGridViewTextBoxColumn.HeaderText = "Count";
-            this.countDataGridViewTextBoxColumn.Name = "countDataGridViewTextBoxColumn";
-            // 
-            // candyMaterialViewModelBindingSource
-            // 
-            this.candyMaterialViewModelBindingSource.DataSource = typeof(AbstractSweetShopServiceDAL.ViewModels.CandyMaterialViewModel);
-            // 
-            // materialViewModelBindingSource
-            // 
-            this.materialViewModelBindingSource.DataSource = typeof(AbstractSweetShopServiceDAL.ViewModels.MaterialViewModel);
+            this.candyViewModelBindingSource.DataSource = typeof(AbstractSweetShopServiceDAL.ViewModels.CandyViewModel);
             // 
             // buttonAdd
             // 
-            this.buttonAdd.Location = new System.Drawing.Point(548, 25);
+            this.buttonAdd.Location = new System.Drawing.Point(483, 32);
             this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new System.Drawing.Size(210, 48);
+            this.buttonAdd.Size = new System.Drawing.Size(186, 39);
             this.buttonAdd.TabIndex = 1;
             this.buttonAdd.Text = "Добавить";
             this.buttonAdd.UseVisualStyleBackColor = true;
@@ -113,9 +91,9 @@
             // 
             // buttonRed
             // 
-            this.buttonRed.Location = new System.Drawing.Point(548, 94);
+            this.buttonRed.Location = new System.Drawing.Point(483, 77);
             this.buttonRed.Name = "buttonRed";
-            this.buttonRed.Size = new System.Drawing.Size(210, 42);
+            this.buttonRed.Size = new System.Drawing.Size(186, 39);
             this.buttonRed.TabIndex = 2;
             this.buttonRed.Text = "Изменить";
             this.buttonRed.UseVisualStyleBackColor = true;
@@ -123,9 +101,9 @@
             // 
             // buttonDel
             // 
-            this.buttonDel.Location = new System.Drawing.Point(548, 157);
+            this.buttonDel.Location = new System.Drawing.Point(483, 122);
             this.buttonDel.Name = "buttonDel";
-            this.buttonDel.Size = new System.Drawing.Size(209, 47);
+            this.buttonDel.Size = new System.Drawing.Size(186, 36);
             this.buttonDel.TabIndex = 3;
             this.buttonDel.Text = "Удалить";
             this.buttonDel.UseVisualStyleBackColor = true;
@@ -133,30 +111,29 @@
             // 
             // buttonUpdate
             // 
-            this.buttonUpdate.Location = new System.Drawing.Point(548, 225);
+            this.buttonUpdate.Location = new System.Drawing.Point(483, 165);
             this.buttonUpdate.Name = "buttonUpdate";
-            this.buttonUpdate.Size = new System.Drawing.Size(210, 48);
+            this.buttonUpdate.Size = new System.Drawing.Size(186, 37);
             this.buttonUpdate.TabIndex = 4;
             this.buttonUpdate.Text = "Обновить";
             this.buttonUpdate.UseVisualStyleBackColor = true;
             this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
             // 
-            // FormMaterials
+            // FormCandies
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(794, 471);
+            this.ClientSize = new System.Drawing.Size(707, 359);
             this.Controls.Add(this.buttonUpdate);
             this.Controls.Add(this.buttonDel);
             this.Controls.Add(this.buttonRed);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.dataGridView);
-            this.Name = "FormMaterials";
-            this.Text = "Материалы";
+            this.Name = "FormCandies";
+            this.Text = "Конфеты";
             this.Load += new System.EventHandler(this.FormMaterial_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.candyMaterialViewModelBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.materialViewModelBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.candyViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -164,16 +141,13 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView;
-        private System.Windows.Forms.BindingSource materialViewModelBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn candyNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource candyViewModelBindingSource;
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Button buttonRed;
         private System.Windows.Forms.Button buttonDel;
         private System.Windows.Forms.Button buttonUpdate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn candyIdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn materialIdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn materialNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn countDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource candyMaterialViewModelBindingSource;
     }
 }

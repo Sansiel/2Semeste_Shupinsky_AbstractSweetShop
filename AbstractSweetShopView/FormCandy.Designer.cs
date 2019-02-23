@@ -228,7 +228,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "FormCandy";
-            this.Text = "FormCandy";
+            this.Text = "Конфета";
             this.Load += new System.EventHandler(this.FormCandy_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();

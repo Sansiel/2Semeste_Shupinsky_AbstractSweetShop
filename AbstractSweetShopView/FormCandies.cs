@@ -8,19 +8,19 @@ using System.Collections.Generic;
 
 namespace AbstractSweetShopView
 {
-    public partial class FormMaterials : Form
+    public partial class FormCandies : Form
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
 
-        private readonly IMaterialService service;
+        private readonly ICandyService service;
 
-        public FormMaterials(IMaterialService service)
+        public FormCandies(ICandyService service)
         {
             InitializeComponent();
             this.service = service;
         }
-        
+
         private void FormMaterial_Load(object sender, EventArgs e)
         {
             LoadData();
@@ -30,15 +30,12 @@ namespace AbstractSweetShopView
         {
             try
             {
-                List<MaterialViewModel> list = service.GetList();
+                List<CandyViewModel> list = service.GetList();
                 if (list != null)
                 {
                     dataGridView.DataSource = list;
                     dataGridView.Columns[0].Visible = false;
-                    dataGridView.Columns[1].Visible = false;
-                    dataGridView.Columns[2].Visible = false;
-                    dataGridView.Columns[4].Visible = false;
-                    dataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
             }
             catch (Exception ex)
@@ -49,7 +46,7 @@ namespace AbstractSweetShopView
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormMaterial>();
+            var form = Container.Resolve<FormCandy>();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
@@ -60,7 +57,7 @@ namespace AbstractSweetShopView
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                var form = Container.Resolve<FormMaterial>();
+                var form = Container.Resolve<FormCandy>();
                 form.Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 if (form.ShowDialog() == DialogResult.OK)
                 {

@@ -80,7 +80,7 @@
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
             this.Name = "FormMaterial";
-            this.Text = "FormMaterial";
+            this.Text = "Материал";
             this.Load += new System.EventHandler(this.FormMaterial_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

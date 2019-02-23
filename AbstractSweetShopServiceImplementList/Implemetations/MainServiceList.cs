@@ -17,21 +17,21 @@ namespace AbstractSweetShopServiceImplementList.Implemetations
         public List<JobViewModel> GetList()
         {
             List<JobViewModel> result = new List<JobViewModel>();
-            for (int i = 0; i < source.Orders.Count; ++i)
+            for (int i = 0; i < source.Jobs.Count; ++i)
             {
                 string clientFIO = string.Empty;
-                for (int j = 0; j < source.Clients.Count; ++j)
+                for (int j = 0; j < source.Buyers.Count; ++j)
                 {
-                    if (source.Clients[j].Id == source.Orders[i].BuyerId)
+                    if (source.Buyers[j].Id == source.Jobs[i].BuyerId)
                     {
-                        clientFIO = source.Clients[j].BuyerFIO;
+                        clientFIO = source.Buyers[j].BuyerFIO;
                         break;
                     }
                 }
                 string CandyName = string.Empty;
                 for (int j = 0; j < source.Candies.Count; ++j)
                 {
-                    if (source.Candies[j].Id == source.Orders[i].CandyId)
+                    if (source.Candies[j].Id == source.Jobs[i].CandyId)
                     {
                         CandyName = source.Candies[j].CandyName;
                         break;
@@ -39,16 +39,16 @@ namespace AbstractSweetShopServiceImplementList.Implemetations
                 }
                 result.Add(new JobViewModel
                 {
-                    Id = source.Orders[i].Id,
-                    BuyerId = source.Orders[i].BuyerId,
+                    Id = source.Jobs[i].Id,
+                    BuyerId = source.Jobs[i].BuyerId,
                     BuyerFIO = clientFIO,
-                    CandyId = source.Orders[i].CandyId,
+                    CandyId = source.Jobs[i].CandyId,
                     CandyName = CandyName,
-                    Count = source.Orders[i].Count,
-                    Sum = source.Orders[i].Sum,
-                    DateCreate = source.Orders[i].DateCreate.ToLongDateString(),
-                    DateImplement = source.Orders[i].DateImplement?.ToLongDateString(),
-                    Status = source.Orders[i].Status.ToString()
+                    Count = source.Jobs[i].Count,
+                    Sum = source.Jobs[i].Sum,
+                    DateCreate = source.Jobs[i].DateCreate.ToLongDateString(),
+                    DateImplement = source.Jobs[i].DateImplement?.ToLongDateString(),
+                    Status = source.Jobs[i].Status.ToString()
                 });
             }
             return result;
@@ -56,14 +56,14 @@ namespace AbstractSweetShopServiceImplementList.Implemetations
         public void CreateOrder(JobBindingModel model)
         {
             int maxId = 0;
-            for (int i = 0; i < source.Orders.Count; ++i)
+            for (int i = 0; i < source.Jobs.Count; ++i)
             {
-                if (source.Orders[i].Id > maxId)
+                if (source.Jobs[i].Id > maxId)
                 {
-                    maxId = source.Clients[i].Id;
+                    maxId = source.Buyers[i].Id;
                 }
             }
-            source.Orders.Add(new Job
+            source.Jobs.Add(new Job
             {
                 Id = maxId + 1,
                 BuyerId = model.BuyerId,
@@ -77,9 +77,9 @@ namespace AbstractSweetShopServiceImplementList.Implemetations
         public void TakeOrderInWork(JobBindingModel model)
         {
             int index = -1;
-            for (int i = 0; i < source.Orders.Count; ++i)
+            for (int i = 0; i < source.Jobs.Count; ++i)
             {
-                if (source.Orders[i].Id == model.Id)
+                if (source.Jobs[i].Id == model.Id)
                 {
                     index = i;
                     break;
@@ -89,19 +89,19 @@ namespace AbstractSweetShopServiceImplementList.Implemetations
             {
                 throw new Exception("Элемент не найден");
             }
-            if (source.Orders[index].Status != JobStatus.Принят)
+            if (source.Jobs[index].Status != JobStatus.Принят)
             {
                 throw new Exception("Заказ не в статусе \"Принят\"");
             }
-            source.Orders[index].DateImplement = DateTime.Now;
-            source.Orders[index].Status = JobStatus.Выполняется;
+            source.Jobs[index].DateImplement = DateTime.Now;
+            source.Jobs[index].Status = JobStatus.Выполняется;
         }
         public void FinishOrder(JobBindingModel model)
         {
             int index = -1;
-            for (int i = 0; i < source.Orders.Count; ++i)
+            for (int i = 0; i < source.Jobs.Count; ++i)
             {
-                if (source.Clients[i].Id == model.Id)
+                if (source.Buyers[i].Id == model.Id)
                 {
                     index = i;
                     break;
@@ -111,18 +111,18 @@ namespace AbstractSweetShopServiceImplementList.Implemetations
             {
                 throw new Exception("Элемент не найден");
             }
-            if (source.Orders[index].Status != JobStatus.Выполняется)
+            if (source.Jobs[index].Status != JobStatus.Выполняется)
             {
                 throw new Exception("Заказ не в статусе \"Выполняется\"");
             }
-            source.Orders[index].Status = JobStatus.Готов;
+            source.Jobs[index].Status = JobStatus.Готов;
         }
         public void PayOrder(JobBindingModel model)
         {
             int index = -1;
-            for (int i = 0; i < source.Orders.Count; ++i)
+            for (int i = 0; i < source.Jobs.Count; ++i)
             {
-                if (source.Clients[i].Id == model.Id)
+                if (source.Buyers[i].Id == model.Id)
                 {
                     index = i;
                     break;
@@ -132,11 +132,11 @@ namespace AbstractSweetShopServiceImplementList.Implemetations
             {
                 throw new Exception("Элемент не найден");
             }
-            if (source.Orders[index].Status != JobStatus.Готов)
+            if (source.Jobs[index].Status != JobStatus.Готов)
             {
                 throw new Exception("Заказ не в статусе \"Готов\"");
             }
-            source.Orders[index].Status = JobStatus.Оплачен;
+            source.Jobs[index].Status = JobStatus.Оплачен;
         }
     }
 }

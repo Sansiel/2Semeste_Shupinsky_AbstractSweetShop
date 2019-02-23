@@ -19,18 +19,18 @@ namespace AbstractSweetShopServiceImplementList.Implemetations
         public void AddElement(BuyerBindingModel model)
         {
             int maxId = 0;
-            for (int i = 0; i < source.Clients.Count; ++i)
+            for (int i = 0; i < source.Buyers.Count; ++i)
             {
-                if (source.Clients[i].Id > maxId)
+                if (source.Buyers[i].Id > maxId)
                 {
-                    maxId = source.Clients[i].Id;
+                    maxId = source.Buyers[i].Id;
                 }
-                if (source.Clients[i].BuyerFIO == model.BuyerFIO)
+                if (source.Buyers[i].BuyerFIO == model.BuyerFIO)
                 {
                     throw new Exception("Уже есть клиент с таким ФИО");
                 }
             }
-            source.Clients.Add(new Buyer
+            source.Buyers.Add(new Buyer
             {
                 Id = maxId + 1,
                 BuyerFIO = model.BuyerFIO
@@ -39,11 +39,11 @@ namespace AbstractSweetShopServiceImplementList.Implemetations
 
         public void DelElement(int id)
         {
-            for (int i = 0; i < source.Clients.Count; ++i)
+            for (int i = 0; i < source.Buyers.Count; ++i)
             {
-                if (source.Clients[i].Id == id)
+                if (source.Buyers[i].Id == id)
                 {
-                    source.Clients.RemoveAt(i);
+                    source.Buyers.RemoveAt(i);
                     return;
                 }
             }
@@ -52,14 +52,14 @@ namespace AbstractSweetShopServiceImplementList.Implemetations
 
         public BuyerViewModel GetElement(int id)
         {
-            for (int i = 0; i < source.Clients.Count; ++i)
+            for (int i = 0; i < source.Buyers.Count; ++i)
             {
-                if (source.Clients[i].Id == id)
+                if (source.Buyers[i].Id == id)
                 {
                     return new BuyerViewModel
                     {
-                        Id = source.Clients[i].Id,
-                        BuyerFIO = source.Clients[i].BuyerFIO
+                        Id = source.Buyers[i].Id,
+                        BuyerFIO = source.Buyers[i].BuyerFIO
                     };
                 }
             }
@@ -69,12 +69,12 @@ namespace AbstractSweetShopServiceImplementList.Implemetations
         public List<BuyerViewModel> GetList()
         {
             List<BuyerViewModel> result = new List<BuyerViewModel>();
-            for (int i = 0; i < source.Clients.Count; ++i)
+            for (int i = 0; i < source.Buyers.Count; ++i)
             {
                 result.Add(new BuyerViewModel
                 {
-                    Id = source.Clients[i].Id,
-                    BuyerFIO = source.Clients[i].BuyerFIO
+                    Id = source.Buyers[i].Id,
+                    BuyerFIO = source.Buyers[i].BuyerFIO
                 });
             }
             return result;
@@ -83,14 +83,14 @@ namespace AbstractSweetShopServiceImplementList.Implemetations
         public void UpdElement(BuyerBindingModel model)
         {
             int index = -1;
-            for (int i = 0; i < source.Clients.Count; ++i)
+            for (int i = 0; i < source.Buyers.Count; ++i)
             {
-                if (source.Clients[i].Id == model.Id)
+                if (source.Buyers[i].Id == model.Id)
                 {
                     index = i;
                 }
-                if (source.Clients[i].BuyerFIO == model.BuyerFIO &&
-                source.Clients[i].Id != model.Id)
+                if (source.Buyers[i].BuyerFIO == model.BuyerFIO &&
+                source.Buyers[i].Id != model.Id)
                 {
                     throw new Exception("Уже есть клиент с таким ФИО");
                 }
@@ -99,7 +99,7 @@ namespace AbstractSweetShopServiceImplementList.Implemetations
             {
                 throw new Exception("Элемент не найден");
             }
-            source.Clients[index].BuyerFIO = model.BuyerFIO;
+            source.Buyers[index].BuyerFIO = model.BuyerFIO;
         }
     }
 }

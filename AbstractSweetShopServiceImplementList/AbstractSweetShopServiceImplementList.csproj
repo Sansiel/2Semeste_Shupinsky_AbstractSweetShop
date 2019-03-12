@@ -42,7 +42,6 @@
   <ItemGroup>
     <Compile Include="DataListSingleton.cs" />
     <Compile Include="Implemetations\BuyerServiceList.cs" />
-    <Compile Include="Implemetations\CandyMaterialServiceList.cs" />
     <Compile Include="Implemetations\CandyServiceList.cs" />
     <Compile Include="Implemetations\MainServiceList.cs" />
     <Compile Include="Implemetations\MaterialServiceList.cs" />

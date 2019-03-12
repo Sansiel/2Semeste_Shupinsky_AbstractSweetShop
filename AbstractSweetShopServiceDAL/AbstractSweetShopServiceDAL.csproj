@@ -46,7 +46,6 @@
     <Compile Include="BindingModels\MaterialBindingModel.cs" />
     <Compile Include="BindingModels\JobBindingModel.cs" />
     <Compile Include="Interfaces\IBuyerService.cs" />
-    <Compile Include="Interfaces\ICandyMaterialService.cs" />
     <Compile Include="Interfaces\ICandyService.cs" />
     <Compile Include="Interfaces\IMainService.cs" />
     <Compile Include="Interfaces\IMaterialService.cs" />

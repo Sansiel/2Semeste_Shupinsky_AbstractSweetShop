@@ -30,6 +30,7 @@ namespace AbstractSweetShopView
             currentContainer.RegisterType<IMaterialService, MaterialServiceList>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<ICandyService, CandyServiceList>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IMainService, MainServiceList>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IStoreService, StoreServiceList>(new HierarchicalLifetimeManager());
             return currentContainer;
         }
     }

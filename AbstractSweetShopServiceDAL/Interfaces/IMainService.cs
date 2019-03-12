@@ -11,5 +11,6 @@ namespace AbstractSweetShopServiceDAL.Interfaces
         void TakeOrderInWork(JobBindingModel model);
         void FinishOrder(JobBindingModel model);
         void PayOrder(JobBindingModel model);
+        void PutMaterialInStore(StoreMaterialBindingModel model);
     }
 }

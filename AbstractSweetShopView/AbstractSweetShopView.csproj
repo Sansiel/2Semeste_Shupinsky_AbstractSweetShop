@@ -182,6 +182,8 @@
     <None Include="Properties\DataSources\AbstractSweetShopServiceDAL.ViewModels.ClientViewModel.datasource" />
     <None Include="Properties\DataSources\AbstractSweetShopServiceDAL.ViewModels.MaterialViewModel.datasource" />
     <None Include="Properties\DataSources\AbstractSweetShopServiceDAL.ViewModels.OrderViewModel.datasource" />
+    <None Include="Properties\DataSources\AbstractSweetShopServiceDAL.ViewModels.StoreMaterialViewModel.datasource" />
+    <None Include="Properties\DataSources\AbstractSweetShopServiceDAL.ViewModels.StoreViewModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -35,10 +35,12 @@
             this.textBoxCount = new System.Windows.Forms.TextBox();
             this.comboBoxStore = new System.Windows.Forms.ComboBox();
             this.comboBoxMaterial = new System.Windows.Forms.ComboBox();
+            this.materialViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
-            this.materialViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.storeViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.materialViewModelBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.storeViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -78,6 +80,8 @@
             // 
             // comboBoxStore
             // 
+            this.comboBoxStore.DataSource = this.storeViewModelBindingSource;
+            this.comboBoxStore.DisplayMember = "StoreName";
             this.comboBoxStore.FormattingEnabled = true;
             this.comboBoxStore.Location = new System.Drawing.Point(126, 22);
             this.comboBoxStore.Name = "comboBoxStore";
@@ -93,6 +97,10 @@
             this.comboBoxMaterial.Name = "comboBoxMaterial";
             this.comboBoxMaterial.Size = new System.Drawing.Size(309, 24);
             this.comboBoxMaterial.TabIndex = 5;
+            // 
+            // materialViewModelBindingSource
+            // 
+            this.materialViewModelBindingSource.DataSource = typeof(AbstractSweetShopServiceDAL.ViewModels.MaterialViewModel);
             // 
             // buttonCancel
             // 
@@ -114,9 +122,9 @@
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
-            // materialViewModelBindingSource
+            // storeViewModelBindingSource
             // 
-            this.materialViewModelBindingSource.DataSource = typeof(AbstractSweetShopServiceDAL.ViewModels.MaterialViewModel);
+            this.storeViewModelBindingSource.DataSource = typeof(AbstractSweetShopServiceDAL.ViewModels.StoreViewModel);
             // 
             // FormPutInStore
             // 
@@ -135,6 +143,7 @@
             this.Text = "Пополнение склада";
             this.Load += new System.EventHandler(this.FormPutInStore_Load);
             ((System.ComponentModel.ISupportInitialize)(this.materialViewModelBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.storeViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -151,5 +160,6 @@
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.BindingSource materialViewModelBindingSource;
+        private System.Windows.Forms.BindingSource storeViewModelBindingSource;
     }
 }

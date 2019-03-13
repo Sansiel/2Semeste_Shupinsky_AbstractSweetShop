@@ -28,12 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonRed = new System.Windows.Forms.Button();
             this.buttonDel = new System.Windows.Forms.Button();
             this.buttonUpdate = new System.Windows.Forms.Button();
             this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.storeViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.storeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.storeViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonAdd
@@ -78,12 +83,33 @@
             // 
             // dataGridView
             // 
+            this.dataGridView.AutoGenerateColumns = false;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn,
+            this.storeNameDataGridViewTextBoxColumn});
+            this.dataGridView.DataSource = this.storeViewModelBindingSource;
             this.dataGridView.Location = new System.Drawing.Point(3, 1);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowTemplate.Height = 24;
             this.dataGridView.Size = new System.Drawing.Size(366, 447);
             this.dataGridView.TabIndex = 4;
+            // 
+            // storeViewModelBindingSource
+            // 
+            this.storeViewModelBindingSource.DataSource = typeof(AbstractSweetShopServiceDAL.ViewModels.StoreViewModel);
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            // 
+            // storeNameDataGridViewTextBoxColumn
+            // 
+            this.storeNameDataGridViewTextBoxColumn.DataPropertyName = "StoreName";
+            this.storeNameDataGridViewTextBoxColumn.HeaderText = "Название склада";
+            this.storeNameDataGridViewTextBoxColumn.Name = "storeNameDataGridViewTextBoxColumn";
             // 
             // FormStores
             // 
@@ -99,6 +125,7 @@
             this.Text = "Склады";
             this.Load += new System.EventHandler(this.FormStores_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.storeViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -110,5 +137,8 @@
         private System.Windows.Forms.Button buttonDel;
         private System.Windows.Forms.Button buttonUpdate;
         private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn storeNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource storeViewModelBindingSource;
     }
 }

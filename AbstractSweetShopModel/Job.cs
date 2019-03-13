@@ -12,5 +12,7 @@ namespace AbstractSweetShopModel
         public JobStatus Status { get; set; }
         public DateTime DateCreate { get; set; }
         public DateTime? DateImplement { get; set; }
+        public virtual Buyer Buyer { get; set; }
+        public virtual Candy Candy { get; set; }
     }
 }

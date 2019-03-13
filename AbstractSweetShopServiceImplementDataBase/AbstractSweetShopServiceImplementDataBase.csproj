@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C8533D1E-F6FB-4278-8A16-98B74075013F}</ProjectGuid>
+    <ProjectGuid>{4A35D75C-F343-4558-BEB8-C7A0BE3FDA1B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AbstractSweetShopModel</RootNamespace>
-    <AssemblyName>AbstractSweetShopModel</AssemblyName>
+    <RootNamespace>AbstractSweetShopServiceImplementDataBase</RootNamespace>
+    <AssemblyName>AbstractSweetShopServiceImplementDataBase</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -47,19 +47,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Buyer.cs" />
-    <Compile Include="Candy.cs" />
-    <Compile Include="CandyMaterial.cs" />
-    <Compile Include="Material.cs" />
-    <Compile Include="Job.cs" />
-    <Compile Include="JobStatus.cs" />
+    <Compile Include="AbstractDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Store.cs" />
-    <Compile Include="StoreMaterial.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AbstractSweetShopModel\AbstractSweetShopModel.csproj">
+      <Project>{c8533d1e-f6fb-4278-8a16-98b74075013f}</Project>
+      <Name>AbstractSweetShopModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AbstractSweetShopServiceDAL\AbstractSweetShopServiceDAL.csproj">
+      <Project>{aa42e484-4bc3-40ba-9930-1b75a46330cf}</Project>
+      <Name>AbstractSweetShopServiceDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AbstractSweetShopView\AbstractSweetShopView.csproj">
+      <Project>{fb494658-e8ff-4987-b26d-7d5634f62bb0}</Project>
+      <Name>AbstractSweetShopView</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

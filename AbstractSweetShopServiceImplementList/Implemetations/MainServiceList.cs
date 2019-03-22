@@ -34,7 +34,7 @@ namespace AbstractSweetShopServiceImplementList.Implemetations
                 .ToList();
             return result;
         }
-        public void CreateOrder(JobBindingModel model)
+        public void CreateJob(JobBindingModel model)
         {
             int maxId = source.Jobs.Count > 0 ? source.Jobs.Max(rec => rec.Id) : 0; source.Jobs.Add(new Job
             {
@@ -47,7 +47,7 @@ namespace AbstractSweetShopServiceImplementList.Implemetations
                 Status = JobStatus.Принят
             });
         }
-        public void TakeOrderInWork(JobBindingModel model)
+        public void TakeJobInWork(JobBindingModel model)
         {
             Job element = source.Jobs.FirstOrDefault(rec => rec.Id == model.Id);
             if (element == null)
@@ -99,7 +99,7 @@ namespace AbstractSweetShopServiceImplementList.Implemetations
             element.DateImplement = DateTime.Now;
             element.Status = JobStatus.Выполняется;
         }
-        public void FinishOrder(JobBindingModel model)
+        public void FinishJob(JobBindingModel model)
         {
             Job element = source.Jobs.FirstOrDefault(rec => rec.Id == model.Id);
             if (element == null)
@@ -112,7 +112,7 @@ namespace AbstractSweetShopServiceImplementList.Implemetations
             }
             element.Status = JobStatus.Готов;
         }
-        public void PayOrder(JobBindingModel model)
+        public void PayJob(JobBindingModel model)
         {
             Job element = source.Jobs.FirstOrDefault(rec => rec.Id == model.Id);
             if (element == null)

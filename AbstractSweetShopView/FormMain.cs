@@ -59,21 +59,21 @@ namespace AbstractSweetShopView
             form.ShowDialog();
         }
 
-        private void buttonCreateOrder_Click(object sender, EventArgs e)
+        private void buttonCreateJob_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormCreateJob>();
             form.ShowDialog();
             LoadData();
         }
 
-        private void buttonTakeOrderInWork_Click(object sender, EventArgs e)
+        private void buttonTakeJobInWork_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 try
                 {
-                    service.TakeOrderInWork(new JobBindingModel { Id = id });
+                    service.TakeJobInWork(new JobBindingModel { Id = id });
                     LoadData();
                 }
                 catch (Exception ex)
@@ -84,14 +84,14 @@ namespace AbstractSweetShopView
             }
         }
 
-        private void buttonOrderReady_Click(object sender, EventArgs e)
+        private void buttonJobReady_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 try
                 {
-                    service.FinishOrder(new JobBindingModel { Id = id });
+                    service.FinishJob(new JobBindingModel { Id = id });
                     LoadData();
                 }
                 catch (Exception ex)
@@ -102,14 +102,14 @@ namespace AbstractSweetShopView
             }
         }
 
-        private void buttonPayOrder_Click(object sender, EventArgs e)
+        private void buttonPayJob_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 try
                 {
-                    service.PayOrder(new JobBindingModel { Id = id });
+                    service.PayJob(new JobBindingModel { Id = id });
                     LoadData();
                 }
                 catch (Exception ex)

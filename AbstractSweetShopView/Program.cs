@@ -1,10 +1,12 @@
 ﻿using AbstractSweetShopServiceDAL.Interfaces;
-using AbstractSweetShopServiceImplementList.Implemetations;
+using AbstractSweetShopServiceImplementDataBase;
+using AbstractSweetShopServiceImplementDataBase.Implementations;
 using System;
 
 using System.Windows.Forms;
 using Unity;
 using Unity.Lifetime;
+using System.Data.Entity;
 
 namespace AbstractSweetShopView
 {
@@ -26,11 +28,12 @@ namespace AbstractSweetShopView
         public static IUnityContainer BuildUnityContainer()
         {
             var currentContainer = new UnityContainer();
-            currentContainer.RegisterType<IBuyerService, BuyerServiceList>(new HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IMaterialService, MaterialServiceList>(new HierarchicalLifetimeManager());
-            currentContainer.RegisterType<ICandyService, CandyServiceList>(new HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IMainService, MainServiceList>(new HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IStoreService, StoreServiceList>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<DbContext, AbstractDbContext>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IBuyerService, BuyerServiceDB>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IMaterialService, MaterialServiceDB>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<ICandyService, CandyServiceDB>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IMainService, MainServiceDB>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IStoreService, StoreServiceDB>(new HierarchicalLifetimeManager());
             return currentContainer;
         }
     }

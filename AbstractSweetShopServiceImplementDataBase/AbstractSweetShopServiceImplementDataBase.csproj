@@ -48,10 +48,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractDbContext.cs" />
+    <Compile Include="Implementations\BuyerServiceDB.cs" />
+    <Compile Include="Implementations\CandyServiceDB.cs" />
+    <Compile Include="Implementations\MainServiceDB.cs" />
+    <Compile Include="Implementations\MaterialServiceDB.cs" />
+    <Compile Include="Implementations\StoreServiceDB.cs" />
+    <Compile Include="Migrations\201903131248502_FirstMigration.cs" />
+    <Compile Include="Migrations\201903131248502_FirstMigration.Designer.cs">
+      <DependentUpon>201903131248502_FirstMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -63,10 +75,11 @@
       <Project>{aa42e484-4bc3-40ba-9930-1b75a46330cf}</Project>
       <Name>AbstractSweetShopServiceDAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AbstractSweetShopView\AbstractSweetShopView.csproj">
-      <Project>{fb494658-e8ff-4987-b26d-7d5634f62bb0}</Project>
-      <Name>AbstractSweetShopView</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201903131248502_FirstMigration.resx">
+      <DependentUpon>201903131248502_FirstMigration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

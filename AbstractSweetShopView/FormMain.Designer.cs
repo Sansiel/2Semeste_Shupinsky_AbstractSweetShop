@@ -47,15 +47,15 @@
             this.statusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateCreateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateImplementDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orderViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.buttonCreateOrder = new System.Windows.Forms.Button();
-            this.buttonTakeOrderInWork = new System.Windows.Forms.Button();
-            this.buttonOrderReady = new System.Windows.Forms.Button();
-            this.buttonPayOrder = new System.Windows.Forms.Button();
+            this.JobViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.buttonCreateJob = new System.Windows.Forms.Button();
+            this.buttonTakeJobInWork = new System.Windows.Forms.Button();
+            this.buttonJobReady = new System.Windows.Forms.Button();
+            this.buttonPayJob = new System.Windows.Forms.Button();
             this.buttonUpdate = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderViewModelBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.JobViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -131,7 +131,7 @@
             this.statusDataGridViewTextBoxColumn,
             this.dateCreateDataGridViewTextBoxColumn,
             this.dateImplementDataGridViewTextBoxColumn});
-            this.dataGridView.DataSource = this.orderViewModelBindingSource;
+            this.dataGridView.DataSource = this.JobViewModelBindingSource;
             this.dataGridView.Location = new System.Drawing.Point(10, 34);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowTemplate.Height = 24;
@@ -198,49 +198,49 @@
             this.dateImplementDataGridViewTextBoxColumn.HeaderText = "DateImplement";
             this.dateImplementDataGridViewTextBoxColumn.Name = "dateImplementDataGridViewTextBoxColumn";
             // 
-            // orderViewModelBindingSource
+            // JobViewModelBindingSource
             // 
-            this.orderViewModelBindingSource.DataSource = typeof(AbstractSweetShopServiceDAL.ViewModels.JobViewModel);
+            this.JobViewModelBindingSource.DataSource = typeof(AbstractSweetShopServiceDAL.ViewModels.JobViewModel);
             // 
-            // buttonCreateOrder
+            // buttonCreateJob
             // 
-            this.buttonCreateOrder.Location = new System.Drawing.Point(771, 62);
-            this.buttonCreateOrder.Name = "buttonCreateOrder";
-            this.buttonCreateOrder.Size = new System.Drawing.Size(200, 32);
-            this.buttonCreateOrder.TabIndex = 2;
-            this.buttonCreateOrder.Text = "Создать заказ";
-            this.buttonCreateOrder.UseVisualStyleBackColor = true;
-            this.buttonCreateOrder.Click += new System.EventHandler(this.buttonCreateOrder_Click);
+            this.buttonCreateJob.Location = new System.Drawing.Point(771, 62);
+            this.buttonCreateJob.Name = "buttonCreateJob";
+            this.buttonCreateJob.Size = new System.Drawing.Size(200, 32);
+            this.buttonCreateJob.TabIndex = 2;
+            this.buttonCreateJob.Text = "Создать заказ";
+            this.buttonCreateJob.UseVisualStyleBackColor = true;
+            this.buttonCreateJob.Click += new System.EventHandler(this.buttonCreateJob_Click);
             // 
-            // buttonTakeOrderInWork
+            // buttonTakeJobInWork
             // 
-            this.buttonTakeOrderInWork.Location = new System.Drawing.Point(772, 123);
-            this.buttonTakeOrderInWork.Name = "buttonTakeOrderInWork";
-            this.buttonTakeOrderInWork.Size = new System.Drawing.Size(198, 32);
-            this.buttonTakeOrderInWork.TabIndex = 3;
-            this.buttonTakeOrderInWork.Text = "Отдать на выполнение";
-            this.buttonTakeOrderInWork.UseVisualStyleBackColor = true;
-            this.buttonTakeOrderInWork.Click += new System.EventHandler(this.buttonTakeOrderInWork_Click);
+            this.buttonTakeJobInWork.Location = new System.Drawing.Point(772, 123);
+            this.buttonTakeJobInWork.Name = "buttonTakeJobInWork";
+            this.buttonTakeJobInWork.Size = new System.Drawing.Size(198, 32);
+            this.buttonTakeJobInWork.TabIndex = 3;
+            this.buttonTakeJobInWork.Text = "Отдать на выполнение";
+            this.buttonTakeJobInWork.UseVisualStyleBackColor = true;
+            this.buttonTakeJobInWork.Click += new System.EventHandler(this.buttonTakeJobInWork_Click);
             // 
-            // buttonOrderReady
+            // buttonJobReady
             // 
-            this.buttonOrderReady.Location = new System.Drawing.Point(775, 192);
-            this.buttonOrderReady.Name = "buttonOrderReady";
-            this.buttonOrderReady.Size = new System.Drawing.Size(195, 36);
-            this.buttonOrderReady.TabIndex = 4;
-            this.buttonOrderReady.Text = "Заказ готов";
-            this.buttonOrderReady.UseVisualStyleBackColor = true;
-            this.buttonOrderReady.Click += new System.EventHandler(this.buttonOrderReady_Click);
+            this.buttonJobReady.Location = new System.Drawing.Point(775, 192);
+            this.buttonJobReady.Name = "buttonJobReady";
+            this.buttonJobReady.Size = new System.Drawing.Size(195, 36);
+            this.buttonJobReady.TabIndex = 4;
+            this.buttonJobReady.Text = "Заказ готов";
+            this.buttonJobReady.UseVisualStyleBackColor = true;
+            this.buttonJobReady.Click += new System.EventHandler(this.buttonJobReady_Click);
             // 
-            // buttonPayOrder
+            // buttonPayJob
             // 
-            this.buttonPayOrder.Location = new System.Drawing.Point(778, 268);
-            this.buttonPayOrder.Name = "buttonPayOrder";
-            this.buttonPayOrder.Size = new System.Drawing.Size(192, 37);
-            this.buttonPayOrder.TabIndex = 5;
-            this.buttonPayOrder.Text = "Заказ оплачен";
-            this.buttonPayOrder.UseVisualStyleBackColor = true;
-            this.buttonPayOrder.Click += new System.EventHandler(this.buttonPayOrder_Click);
+            this.buttonPayJob.Location = new System.Drawing.Point(778, 268);
+            this.buttonPayJob.Name = "buttonPayJob";
+            this.buttonPayJob.Size = new System.Drawing.Size(192, 37);
+            this.buttonPayJob.TabIndex = 5;
+            this.buttonPayJob.Text = "Заказ оплачен";
+            this.buttonPayJob.UseVisualStyleBackColor = true;
+            this.buttonPayJob.Click += new System.EventHandler(this.buttonPayJob_Click);
             // 
             // buttonUpdate
             // 
@@ -258,10 +258,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(995, 459);
             this.Controls.Add(this.buttonUpdate);
-            this.Controls.Add(this.buttonPayOrder);
-            this.Controls.Add(this.buttonOrderReady);
-            this.Controls.Add(this.buttonTakeOrderInWork);
-            this.Controls.Add(this.buttonCreateOrder);
+            this.Controls.Add(this.buttonPayJob);
+            this.Controls.Add(this.buttonJobReady);
+            this.Controls.Add(this.buttonTakeJobInWork);
+            this.Controls.Add(this.buttonCreateJob);
             this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -271,7 +271,7 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderViewModelBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.JobViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -285,10 +285,10 @@
         private System.Windows.Forms.ToolStripMenuItem компонентыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem изделияToolStripMenuItem;
         private System.Windows.Forms.DataGridView dataGridView;
-        private System.Windows.Forms.Button buttonCreateOrder;
-        private System.Windows.Forms.Button buttonTakeOrderInWork;
-        private System.Windows.Forms.Button buttonOrderReady;
-        private System.Windows.Forms.Button buttonPayOrder;
+        private System.Windows.Forms.Button buttonCreateJob;
+        private System.Windows.Forms.Button buttonTakeJobInWork;
+        private System.Windows.Forms.Button buttonJobReady;
+        private System.Windows.Forms.Button buttonPayJob;
         private System.Windows.Forms.Button buttonUpdate;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn clientIdDataGridViewTextBoxColumn;
@@ -300,7 +300,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateCreateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateImplementDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource orderViewModelBindingSource;
+        private System.Windows.Forms.BindingSource JobViewModelBindingSource;
         private System.Windows.Forms.ToolStripMenuItem складыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem пополнитьСкладToolStripMenuItem;
     }

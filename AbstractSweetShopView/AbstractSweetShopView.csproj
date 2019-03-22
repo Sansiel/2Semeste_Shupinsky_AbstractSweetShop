@@ -209,6 +209,10 @@
       <Project>{aa42e484-4bc3-40ba-9930-1b75a46330cf}</Project>
       <Name>AbstractSweetShopServiceDAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AbstractSweetShopServiceImplementDataBase\AbstractSweetShopServiceImplementDataBase.csproj">
+      <Project>{4a35d75c-f343-4558-beb8-c7a0be3fda1b}</Project>
+      <Name>AbstractSweetShopServiceImplementDataBase</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AbstractSweetShopServiceImplementList\AbstractSweetShopServiceImplementList.csproj">
       <Project>{54e0d82f-3281-4ce7-a299-a795a5d67131}</Project>
       <Name>AbstractSweetShopServiceImplementList</Name>

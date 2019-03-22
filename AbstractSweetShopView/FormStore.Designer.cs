@@ -31,21 +31,21 @@
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.storeMaterialViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.materialViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.textBoxName = new System.Windows.Forms.TextBox();
-            this.buttonCancel = new System.Windows.Forms.Button();
-            this.buttonSave = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridView = new System.Windows.Forms.DataGridView();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.storeIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.materialIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.materialNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.countDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.storeMaterialViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.materialViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.textBoxName = new System.Windows.Forms.TextBox();
+            this.buttonCancel = new System.Windows.Forms.Button();
+            this.buttonSave = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.storeMaterialViewModelBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.materialViewModelBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -59,13 +59,60 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.dataGridView1);
+            this.groupBox1.Controls.Add(this.dataGridView);
             this.groupBox1.Location = new System.Drawing.Point(15, 51);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(490, 351);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Материалы";
+            // 
+            // dataGridView
+            // 
+            this.dataGridView.AutoGenerateColumns = false;
+            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn,
+            this.storeIdDataGridViewTextBoxColumn,
+            this.materialIdDataGridViewTextBoxColumn,
+            this.materialNameDataGridViewTextBoxColumn,
+            this.countDataGridViewTextBoxColumn});
+            this.dataGridView.DataSource = this.storeMaterialViewModelBindingSource;
+            this.dataGridView.Location = new System.Drawing.Point(8, 25);
+            this.dataGridView.Name = "dataGridView";
+            this.dataGridView.RowTemplate.Height = 24;
+            this.dataGridView.Size = new System.Drawing.Size(480, 325);
+            this.dataGridView.TabIndex = 0;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            // 
+            // storeIdDataGridViewTextBoxColumn
+            // 
+            this.storeIdDataGridViewTextBoxColumn.DataPropertyName = "StoreId";
+            this.storeIdDataGridViewTextBoxColumn.HeaderText = "StoreId";
+            this.storeIdDataGridViewTextBoxColumn.Name = "storeIdDataGridViewTextBoxColumn";
+            // 
+            // materialIdDataGridViewTextBoxColumn
+            // 
+            this.materialIdDataGridViewTextBoxColumn.DataPropertyName = "MaterialId";
+            this.materialIdDataGridViewTextBoxColumn.HeaderText = "MaterialId";
+            this.materialIdDataGridViewTextBoxColumn.Name = "materialIdDataGridViewTextBoxColumn";
+            // 
+            // materialNameDataGridViewTextBoxColumn
+            // 
+            this.materialNameDataGridViewTextBoxColumn.DataPropertyName = "MaterialName";
+            this.materialNameDataGridViewTextBoxColumn.HeaderText = "Название компонента";
+            this.materialNameDataGridViewTextBoxColumn.Name = "materialNameDataGridViewTextBoxColumn";
+            // 
+            // countDataGridViewTextBoxColumn
+            // 
+            this.countDataGridViewTextBoxColumn.DataPropertyName = "Count";
+            this.countDataGridViewTextBoxColumn.HeaderText = "Количество";
+            this.countDataGridViewTextBoxColumn.Name = "countDataGridViewTextBoxColumn";
             // 
             // storeMaterialViewModelBindingSource
             // 
@@ -103,53 +150,6 @@
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idDataGridViewTextBoxColumn,
-            this.storeIdDataGridViewTextBoxColumn,
-            this.materialIdDataGridViewTextBoxColumn,
-            this.materialNameDataGridViewTextBoxColumn,
-            this.countDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.storeMaterialViewModelBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(8, 25);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(480, 325);
-            this.dataGridView1.TabIndex = 0;
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            // 
-            // storeIdDataGridViewTextBoxColumn
-            // 
-            this.storeIdDataGridViewTextBoxColumn.DataPropertyName = "StoreId";
-            this.storeIdDataGridViewTextBoxColumn.HeaderText = "StoreId";
-            this.storeIdDataGridViewTextBoxColumn.Name = "storeIdDataGridViewTextBoxColumn";
-            // 
-            // materialIdDataGridViewTextBoxColumn
-            // 
-            this.materialIdDataGridViewTextBoxColumn.DataPropertyName = "MaterialId";
-            this.materialIdDataGridViewTextBoxColumn.HeaderText = "MaterialId";
-            this.materialIdDataGridViewTextBoxColumn.Name = "materialIdDataGridViewTextBoxColumn";
-            // 
-            // materialNameDataGridViewTextBoxColumn
-            // 
-            this.materialNameDataGridViewTextBoxColumn.DataPropertyName = "MaterialName";
-            this.materialNameDataGridViewTextBoxColumn.HeaderText = "Название компонента";
-            this.materialNameDataGridViewTextBoxColumn.Name = "materialNameDataGridViewTextBoxColumn";
-            // 
-            // countDataGridViewTextBoxColumn
-            // 
-            this.countDataGridViewTextBoxColumn.DataPropertyName = "Count";
-            this.countDataGridViewTextBoxColumn.HeaderText = "Количество";
-            this.countDataGridViewTextBoxColumn.Name = "countDataGridViewTextBoxColumn";
-            // 
             // FormStore
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -164,9 +164,9 @@
             this.Text = "Склад";
             this.Load += new System.EventHandler(this.FormStore_Load);
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.storeMaterialViewModelBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.materialViewModelBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -181,7 +181,7 @@
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.BindingSource storeMaterialViewModelBindingSource;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn storeIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn materialIdDataGridViewTextBoxColumn;

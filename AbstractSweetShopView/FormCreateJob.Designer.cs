@@ -161,7 +161,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FormCreateJob";
             this.Text = "Создание заказа";
-            this.Load += new System.EventHandler(this.FormCreateOrder_Load);
+            this.Load += new System.EventHandler(this.FormCreateJob_Load);
             ((System.ComponentModel.ISupportInitialize)(this.clientViewModelBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.candyViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);

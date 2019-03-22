@@ -27,7 +27,7 @@ namespace AbstractSweetShopView
             this.serviceP = serviceP;
             this.serviceM = serviceM;
         }
-        private void FormCreateOrder_Load(object sender, EventArgs e)
+        private void FormCreateJob_Load(object sender, EventArgs e)
         {
             try
             {
@@ -108,7 +108,7 @@ namespace AbstractSweetShopView
             }
             try
             {
-                serviceM.CreateOrder(new JobBindingModel
+                serviceM.CreateJob(new JobBindingModel
                 {
                     BuyerId = Convert.ToInt32(comboBoxClient.SelectedValue),
                     CandyId = Convert.ToInt32(comboBoxCandy.SelectedValue),

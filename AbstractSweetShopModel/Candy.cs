@@ -14,5 +14,7 @@ namespace AbstractSweetShopModel
 
         [ForeignKey("CandyId")]
         public virtual List<Job> Jobs  { get; set; }
+        [ForeignKey("CandyId")]
+        public virtual List<CandyMaterial> CandyMaterials { get; set; }
     }
 }

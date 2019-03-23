@@ -119,8 +119,9 @@
             this.storeMaterialViewModelBindingSource.DataSource = typeof(AbstractSweetShopServiceDAL.ViewModels.StoreMaterialViewModel);
             // 
             // materialViewModelBindingSource
+
             // 
-            this.materialViewModelBindingSource.DataSource = typeof(AbstractSweetShopServiceDAL.ViewModels.MaterialViewModel);
+            this.storeMaterialViewModelBindingSource.DataSource = typeof(AbstractSweetShopServiceDAL.ViewModels.StoreMaterialViewModel);
             // 
             // textBoxName
             // 

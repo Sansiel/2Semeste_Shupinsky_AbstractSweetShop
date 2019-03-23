@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace AbstractSweetShopServiceDAL.ViewModels
 {
-    class StoreLoadViewModel
+    public class StoreLoadViewModel
     {
         public string StoreName { get; set; }
         public int TotalCount { get; set; }
-        public IEnumerable<Tuple<string, int>> Components { get; set; }
+        public IEnumerable<Tuple<string, int>> Materials { get; set; }
     }
 }

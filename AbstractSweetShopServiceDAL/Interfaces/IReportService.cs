@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace AbstractSweetShopServiceDAL.Interfaces
 {
-    interface IReportService
+    public interface IReportService
     {
-        void SaveProductPrice(ReportBindingModel model);
+        void SaveCandyPrice(ReportBindingModel model);
         List<StoreLoadViewModel> GetStoreLoad();
         void SaveStoreLoad(ReportBindingModel model);
         List<BuyerJobsViewModel> GetBuyerJobs(ReportBindingModel model);

@@ -2,7 +2,7 @@
 
 namespace AbstractSweetShopServiceDAL.BindingModels
 {
-    class ReportBindingModel
+    public class ReportBindingModel
     {
         public string FileName { get; set; }
         public DateTime? DateFrom { get; set; }

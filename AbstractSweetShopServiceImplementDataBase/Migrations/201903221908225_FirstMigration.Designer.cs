@@ -13,7 +13,7 @@ namespace AbstractSweetShopServiceImplementDataBase.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201903131248502_FirstMigration"; }
+            get { return "201903221908225_FirstMigration"; }
         }
         
         string IMigrationMetadata.Source

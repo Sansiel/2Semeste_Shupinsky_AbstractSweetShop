@@ -3,14 +3,15 @@ using System.Data.Entity;
 
 namespace AbstractSweetShopServiceImplementDataBase
 {
-    public class AbstractDbContext : DbContext
+    public class DbContext : System.Data.Entity.DbContext
     {
-        public AbstractDbContext() : base("AbstractDatabase")
+        public DbContext() : base("AbstractDatabase")
         {
             //настройки конфигурации для entity
             Configuration.ProxyCreationEnabled = false;
             Configuration.LazyLoadingEnabled = false;
-            var ensureDLLIsCopied = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
+            var ensureDLLIsCopied =
+            System.Data.Entity.SqlServer.SqlProviderServices.Instance;
         }
         public virtual DbSet<Buyer> Buyers { get; set; }
         public virtual DbSet<Material> Materials { get; set; }

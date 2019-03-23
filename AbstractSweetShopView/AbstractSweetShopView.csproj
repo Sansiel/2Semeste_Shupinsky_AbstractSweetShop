@@ -130,6 +130,12 @@
     <Compile Include="FormStore.Designer.cs">
       <DependentUpon>FormStore.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormStoreLoad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStoreLoad.Designer.cs">
+      <DependentUpon>FormStoreLoad.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormStores.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,6 +177,9 @@
     <EmbeddedResource Include="FormStore.resx">
       <DependentUpon>FormStore.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormStoreLoad.resx">
+      <DependentUpon>FormStoreLoad.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormStores.resx">
       <DependentUpon>FormStores.cs</DependentUpon>
     </EmbeddedResource>
@@ -190,6 +199,7 @@
     <None Include="Properties\DataSources\AbstractSweetShopServiceDAL.ViewModels.ClientViewModel.datasource" />
     <None Include="Properties\DataSources\AbstractSweetShopServiceDAL.ViewModels.MaterialViewModel.datasource" />
     <None Include="Properties\DataSources\AbstractSweetShopServiceDAL.ViewModels.OrderViewModel.datasource" />
+    <None Include="Properties\DataSources\AbstractSweetShopServiceDAL.ViewModels.StoreLoadViewModel.datasource" />
     <None Include="Properties\DataSources\AbstractSweetShopServiceDAL.ViewModels.StoreMaterialViewModel.datasource" />
     <None Include="Properties\DataSources\AbstractSweetShopServiceDAL.ViewModels.StoreViewModel.datasource" />
     <None Include="Properties\Settings.settings">

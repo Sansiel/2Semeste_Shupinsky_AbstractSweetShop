@@ -5,6 +5,7 @@ using AbstractSweetShopServiceDAL.Interfaces;
 using Unity;
 using System.Collections.Generic;
 using AbstractSweetShopServiceDAL.ViewModels;
+using AbstractSweetShopServiceImplementDataBase.Implementations;
 
 namespace AbstractSweetShopView
 {
@@ -14,11 +15,13 @@ namespace AbstractSweetShopView
         public new IUnityContainer Container { get; set; }
 
         private readonly IMainService service;
+        private readonly ReportServiceDB reportService;
 
-        public FormMain(IMainService service)
+        public FormMain(IMainService service, ReportServiceDB serviceDB)
         {
             InitializeComponent();
             this.service = service;
+            this.reportService = serviceDB;
         }
         private void LoadData()
         {
@@ -139,6 +142,43 @@ namespace AbstractSweetShopView
         private void пополнитьСкладToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormPutInStore>();
+            form.ShowDialog();
+        }
+        
+        private void прайсИзделийToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog
+            {
+                Filter = "doc|*.doc|docx|*.docx"
+            };
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    reportService.SaveCandyPrice(new ReportBindingModel
+                    {
+                        FileName = sfd.FileName
+                    });
+                    MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void загруженностьСкладаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormStoreLoad>();
+            form.ShowDialog();
+        }
+
+        private void заказыКлиентовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormBuyerJobs>();
             form.ShowDialog();
         }
     }

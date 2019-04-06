@@ -121,7 +121,7 @@
             this.Controls.Add(this.reportViewer);
             this.Controls.Add(this.panel1);
             this.Name = "FormBuyerJobs";
-            this.Text = "FormBuyerJobs";
+            this.Text = "Список заказов клиентов";
             this.Load += new System.EventHandler(this.FormBuyerJobs_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

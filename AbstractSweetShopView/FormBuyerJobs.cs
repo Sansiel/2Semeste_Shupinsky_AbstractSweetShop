@@ -18,12 +18,6 @@ namespace AbstractSweetShopView
             InitializeComponent();
             this.service = service;
         }
-        private void FormBuyerJobs_Load(object sender, EventArgs e)
-        {
-
-            this.reportViewer.RefreshReport();
-        }
-
         private void buttonMake_Click(object sender, EventArgs e)
         {
             if (dateTimePickerFrom.Value.Date >= dateTimePickerTo.Value.Date)
@@ -45,7 +39,7 @@ namespace AbstractSweetShopView
                     DateFrom = dateTimePickerFrom.Value,
                     DateTo = dateTimePickerTo.Value
                 });
-                ReportDataSource source = new ReportDataSource("DataSetOrders",
+                ReportDataSource source = new ReportDataSource("DataSetJobs",
                 dataSource);
                 reportViewer.LocalReport.DataSources.Add(source);
                 reportViewer.RefreshReport();
@@ -88,6 +82,12 @@ namespace AbstractSweetShopView
                     MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void FormBuyerJobs_Load(object sender, EventArgs e)
+        {
+
+            this.reportViewer1.RefreshReport();
         }
     }
 }

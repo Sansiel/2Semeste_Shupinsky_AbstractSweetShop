@@ -30,13 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             this.buttonSaveToExcel = new System.Windows.Forms.Button();
-            this.dataGridView = new System.Windows.Forms.DataGridView();
             this.storeLoadViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.storeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.materialsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalCountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+            this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.Склад = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Материал = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Количество = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.storeLoadViewModelBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonSaveToExcel
@@ -49,45 +49,37 @@
             this.buttonSaveToExcel.UseVisualStyleBackColor = true;
             this.buttonSaveToExcel.Click += new System.EventHandler(this.buttonSaveToExcel_Click);
             // 
-            // dataGridView
-            // 
-            this.dataGridView.AutoGenerateColumns = false;
-            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.storeNameDataGridViewTextBoxColumn,
-            this.materialsDataGridViewTextBoxColumn,
-            this.totalCountDataGridViewTextBoxColumn});
-            this.dataGridView.DataSource = this.storeLoadViewModelBindingSource;
-            this.dataGridView.Location = new System.Drawing.Point(10, 58);
-            this.dataGridView.Name = "dataGridView";
-            this.dataGridView.RowTemplate.Height = 24;
-            this.dataGridView.Size = new System.Drawing.Size(652, 257);
-            this.dataGridView.TabIndex = 1;
-            // 
             // storeLoadViewModelBindingSource
             // 
             this.storeLoadViewModelBindingSource.DataSource = typeof(AbstractSweetShopServiceDAL.ViewModels.StoreLoadViewModel);
             // 
-            // storeNameDataGridViewTextBoxColumn
+            // dataGridView
             // 
-            this.storeNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.storeNameDataGridViewTextBoxColumn.DataPropertyName = "StoreName";
-            this.storeNameDataGridViewTextBoxColumn.HeaderText = "Склад";
-            this.storeNameDataGridViewTextBoxColumn.Name = "storeNameDataGridViewTextBoxColumn";
+            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Склад,
+            this.Материал,
+            this.Количество});
+            this.dataGridView.Location = new System.Drawing.Point(4, 55);
+            this.dataGridView.Name = "dataGridView";
+            this.dataGridView.RowTemplate.Height = 24;
+            this.dataGridView.Size = new System.Drawing.Size(669, 265);
+            this.dataGridView.TabIndex = 1;
             // 
-            // materialsDataGridViewTextBoxColumn
+            // Склад
             // 
-            this.materialsDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.materialsDataGridViewTextBoxColumn.DataPropertyName = "Materials";
-            this.materialsDataGridViewTextBoxColumn.HeaderText = "Материалы";
-            this.materialsDataGridViewTextBoxColumn.Name = "materialsDataGridViewTextBoxColumn";
+            this.Склад.HeaderText = "Склад";
+            this.Склад.Name = "Склад";
             // 
-            // totalCountDataGridViewTextBoxColumn
+            // Материал
             // 
-            this.totalCountDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.totalCountDataGridViewTextBoxColumn.DataPropertyName = "TotalCount";
-            this.totalCountDataGridViewTextBoxColumn.HeaderText = "Количество";
-            this.totalCountDataGridViewTextBoxColumn.Name = "totalCountDataGridViewTextBoxColumn";
+            this.Материал.HeaderText = "Материал";
+            this.Материал.Name = "Материал";
+            // 
+            // Количество
+            // 
+            this.Количество.HeaderText = "Количество";
+            this.Количество.Name = "Количество";
             // 
             // FormStoreLoad
             // 
@@ -99,8 +91,8 @@
             this.Name = "FormStoreLoad";
             this.Text = "Загрузка складов";
             this.Load += new System.EventHandler(this.FormStoreLoad_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.storeLoadViewModelBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -108,10 +100,10 @@
         #endregion
 
         private System.Windows.Forms.Button buttonSaveToExcel;
-        private System.Windows.Forms.DataGridView dataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn storeNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn materialsDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn totalCountDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource storeLoadViewModelBindingSource;
+        private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Склад;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Материал;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Количество;
     }
 }

@@ -124,7 +124,7 @@ namespace AbstractSweetShopView
 
         private void складыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = new Stores();
+            var form = new FormStores();
             form.ShowDialog();
         }
 

@@ -1,28 +1,19 @@
 ﻿using System;
 using System.Windows.Forms;
 using AbstractSweetShopServiceDAL.BindingModels;
-using AbstractSweetShopServiceDAL.Interfaces;
 using AbstractSweetShopServiceDAL.ViewModels;
-using Unity;
 
 namespace AbstractSweetShopView
 {
     public partial class FormMaterial : Form
     {
-
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-
         public int Id { set { id = value; } }
-
-        private readonly IMaterialService service;
 
         private int? id;
 
-        public FormMaterial(IMaterialService service)
+        public FormMaterial()
         {
             InitializeComponent();
-            this.service = service;
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
@@ -36,7 +27,7 @@ namespace AbstractSweetShopView
             {
                 if (id.HasValue)
                 {
-                    service.UpdElement(new MaterialBindingModel
+                    APIClient.PostRequest<MaterialBindingModel, bool>("api/Material/UpdElement", new MaterialBindingModel
                     {
                         Id = id.Value,
                         MaterialName = textBoxName.Text
@@ -44,7 +35,7 @@ namespace AbstractSweetShopView
                 }
                 else
                 {
-                    service.AddElement(new MaterialBindingModel
+                    APIClient.PostRequest<MaterialBindingModel, bool>("api/Material/AddElement", new MaterialBindingModel
                     {
                         MaterialName = textBoxName.Text
                     });
@@ -71,7 +62,7 @@ namespace AbstractSweetShopView
             {
                 try
                 {
-                    MaterialViewModel view = service.GetElement(id.Value);
+                    MaterialViewModel view = APIClient.GetRequest<MaterialViewModel>("api/Material/Get/" + id.Value);
                     if (view != null)
                     {
                         textBoxName.Text = view.MaterialName;

@@ -1,33 +1,22 @@
 ﻿using System;
 using System.Windows.Forms;
 using AbstractSweetShopServiceDAL.BindingModels;
-using AbstractSweetShopServiceDAL.Interfaces;
-using Unity;
 using System.Collections.Generic;
 using AbstractSweetShopServiceDAL.ViewModels;
-using AbstractSweetShopServiceImplementDataBase.Implementations;
 
 namespace AbstractSweetShopView
 {
     public partial class FormMain : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-
-        private readonly IMainService service;
-        private readonly ReportServiceDB reportService;
-
-        public FormMain(IMainService service, ReportServiceDB serviceDB)
+        public FormMain()
         {
             InitializeComponent();
-            this.service = service;
-            this.reportService = serviceDB;
         }
         private void LoadData()
         {
             try
             {
-                List<JobViewModel> list = service.GetList();
+                List<JobViewModel> list = APIClient.GetRequest<List<JobViewModel>>("api/Main/GetList");
                 if (list != null) {
                     dataGridView.DataSource = list;
                     dataGridView.Columns[0].Visible = false;
@@ -46,25 +35,25 @@ namespace AbstractSweetShopView
 
         private void клиентыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormBuyers>();
+            var form = new FormBuyers();
             form.ShowDialog();
         }
 
         private void компонентыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormMaterials>();
+            var form = new FormMaterials();
             form.ShowDialog();
         }
 
         private void изделияToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormCandies>();
+            var form = new FormCandies();
             form.ShowDialog();
         }
 
         private void buttonCreateJob_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormCreateJob>();
+            var form = new FormCreateJob();
             form.ShowDialog();
             LoadData();
         }
@@ -76,7 +65,7 @@ namespace AbstractSweetShopView
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 try
                 {
-                    service.TakeJobInWork(new JobBindingModel { Id = id });
+                    APIClient.PostRequest<JobBindingModel,bool>("api/Main/TakeJobInWork", new JobBindingModel { Id = id });
                     LoadData();
                 }
                 catch (Exception ex)
@@ -94,7 +83,7 @@ namespace AbstractSweetShopView
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 try
                 {
-                    service.FinishJob(new JobBindingModel { Id = id });
+                    APIClient.PostRequest<JobBindingModel, bool>("api/Main/FinishJob", new JobBindingModel { Id = id });
                     LoadData();
                 }
                 catch (Exception ex)
@@ -112,7 +101,7 @@ namespace AbstractSweetShopView
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 try
                 {
-                    service.PayJob(new JobBindingModel { Id = id });
+                    APIClient.PostRequest<JobBindingModel, bool>("api/Main/.PayJob", new JobBindingModel { Id = id });
                     LoadData();
                 }
                 catch (Exception ex)
@@ -135,13 +124,13 @@ namespace AbstractSweetShopView
 
         private void складыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormStores>();
+            var form = new Stores();
             form.ShowDialog();
         }
 
         private void пополнитьСкладToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormPutInStore>();
+            var form = new FormPutInStore();
             form.ShowDialog();
         }
         
@@ -155,10 +144,7 @@ namespace AbstractSweetShopView
             {
                 try
                 {
-                    reportService.SaveCandyPrice(new ReportBindingModel
-                    {
-                        FileName = sfd.FileName
-                    });
+                    APIClient.PostRequest<ReportBindingModel, bool>("api/Report/SaveProductPrice", new ReportBindingModel { FileName = sfd.FileName});
                     MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                 }
@@ -172,13 +158,13 @@ namespace AbstractSweetShopView
 
         private void загруженностьСкладаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormStoreLoad>();
+            var form = new FormStoreLoad();
             form.ShowDialog();
         }
 
         private void заказыКлиентовToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormBuyerJobs>();
+            var form = new FormBuyerJobs();
             form.ShowDialog();
         }
     }

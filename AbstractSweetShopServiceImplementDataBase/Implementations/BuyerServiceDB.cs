@@ -16,8 +16,7 @@ namespace AbstractSweetShopServiceImplementDataBase.Implementations
         }
         public List<BuyerViewModel> GetList()
         {
-            List<BuyerViewModel> result = context.Buyers.Select(rec => new
-            BuyerViewModel
+            List<BuyerViewModel> result = context.Buyers.Select(rec => new BuyerViewModel
             {
                 Id = rec.Id,
                 BuyerFIO = rec.BuyerFIO

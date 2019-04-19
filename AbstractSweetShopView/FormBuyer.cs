@@ -1,27 +1,19 @@
 ﻿using System;
 using System.Windows.Forms;
 using AbstractSweetShopServiceDAL.BindingModels;
-using AbstractSweetShopServiceDAL.Interfaces;
 using AbstractSweetShopServiceDAL.ViewModels;
-using Unity;
 
 namespace AbstractSweetShopView
 {
     public partial class FormBuyer : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-
         public int Id { set { id = value; } }
-
-        private readonly IBuyerService service;
 
         private int? id;
 
-        public FormBuyer(IBuyerService service)
+        public FormBuyer()
         {
             InitializeComponent();
-            this.service = service;
         }
 
         private void buttonSaveFIO_Click(object sender, EventArgs e)
@@ -35,7 +27,7 @@ namespace AbstractSweetShopView
             {
                 if (id.HasValue)
                 {
-                    service.UpdElement(new BuyerBindingModel
+                    APIClient.PostRequest<BuyerBindingModel, bool>("api/Buyer/UpdElement", new BuyerBindingModel
                     {
                         Id = id.Value,
                         BuyerFIO = textBoxFIO.Text
@@ -43,7 +35,7 @@ namespace AbstractSweetShopView
                 }
                 else
                 {
-                    service.AddElement(new BuyerBindingModel
+                    APIClient.PostRequest<BuyerBindingModel, bool>("api/Buyer/AddElement", new BuyerBindingModel
                     {
                         BuyerFIO = textBoxFIO.Text
                     });
@@ -70,11 +62,8 @@ namespace AbstractSweetShopView
             {
                 try
                 {
-                    BuyerViewModel view = service.GetElement(id.Value);
-                    if (view != null)
-                    {
-                        textBoxFIO.Text = view.BuyerFIO;
-                    }
+                    BuyerViewModel view = APIClient.GetRequest<BuyerViewModel>("api/Buyer/Get/" + id.Value);
+                    textBoxFIO.Text = view.BuyerFIO;
                 }
                 catch (Exception ex)
                 {

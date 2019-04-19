@@ -1,28 +1,24 @@
 ﻿using AbstractSweetShopServiceDAL.BindingModels;
-using AbstractSweetShopServiceDAL.Interfaces;
+using AbstractSweetShopServiceDAL.ViewModels;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
-using Unity;
 
 namespace AbstractSweetShopView
 {
     public partial class FormStoreLoad : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly IReportService service;
 
-        public FormStoreLoad(IReportService service)
+        public FormStoreLoad()
         {
             InitializeComponent();
-            this.service = service;
         }
 
         private void FormStoreLoad_Load(object sender, EventArgs e)
         {
             try
             {
-                var dict = service.GetStoreLoad();
+                var dict = APIClient.GetRequest<List<StoreLoadViewModel>>("api/Store/GetList");
                 if (dict != null)
                 {
                     dataGridView.Rows.Clear();
@@ -55,7 +51,7 @@ namespace AbstractSweetShopView
             {
                 try
                 {
-                    service.SaveStoreLoad(new ReportBindingModel
+                    APIClient.PostRequest<ReportBindingModel, bool>("api/Report/SaveStore", new ReportBindingModel
                     {
                         FileName = sfd.FileName
                     });

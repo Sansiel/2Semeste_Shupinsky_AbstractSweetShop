@@ -1,22 +1,18 @@
 ﻿using AbstractSweetShopServiceDAL.BindingModels;
-using AbstractSweetShopServiceDAL.Interfaces;
+using AbstractSweetShopServiceDAL.ViewModels;
 using Microsoft.Reporting.WinForms;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
-using Unity;
 
 namespace AbstractSweetShopView
 {
     public partial class FormBuyerJobs : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly IReportService service;
 
-        public FormBuyerJobs(IReportService service)
+        public FormBuyerJobs()
         {
             InitializeComponent();
-            this.service = service;
         }
         private void buttonMake_Click(object sender, EventArgs e)
         {
@@ -34,13 +30,13 @@ namespace AbstractSweetShopView
                 " по " +
                 dateTimePickerTo.Value.ToShortDateString());
                 reportViewer.LocalReport.SetParameters(parameter);
-                var dataSource = service.GetBuyerJobs(new ReportBindingModel
-                {
+                List < BuyerJobsViewModel > response = APIClient.PostRequest<ReportBindingModel, List<BuyerJobsViewModel>>("api/Report/GetBuyerJobs", new ReportBindingModel
+{
                     DateFrom = dateTimePickerFrom.Value,
                     DateTo = dateTimePickerTo.Value
                 });
                 ReportDataSource source = new ReportDataSource("DataSetJobs",
-                dataSource);
+                response);
                 reportViewer.LocalReport.DataSources.Add(source);
                 reportViewer.RefreshReport();
             }
@@ -67,8 +63,8 @@ namespace AbstractSweetShopView
             {
                 try
                 {
-                    service.SaveBuyerJobs(new ReportBindingModel
-                    {
+                    APIClient.PostRequest<ReportBindingModel, bool>("api/Report/SaveBuyerJobs", new ReportBindingModel
+{
                         FileName = sfd.FileName,
                         DateFrom = dateTimePickerFrom.Value,
                         DateTo = dateTimePickerTo.Value
@@ -87,7 +83,7 @@ namespace AbstractSweetShopView
         private void FormBuyerJobs_Load(object sender, EventArgs e)
         {
 
-            this.reportViewer1.RefreshReport();
+            this.reportViewer.RefreshReport();
         }
     }
 }

@@ -2,44 +2,30 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using AbstractSweetShopServiceDAL.BindingModels;
-using AbstractSweetShopServiceDAL.Interfaces;
 using AbstractSweetShopServiceDAL.ViewModels;
-using Unity;
 
 namespace AbstractSweetShopView
 {
     public partial class FormPutInStore : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-
-        private readonly IStoreService serviceS;
-
-        private readonly IMaterialService serviceC;
-
-        private readonly IMainService serviceM;
-
-        public FormPutInStore(IStoreService serviceS, IMaterialService serviceC, IMainService serviceM)
+        public FormPutInStore()
         {
             InitializeComponent();
-            this.serviceS = serviceS;
-            this.serviceC = serviceC;
-            this.serviceM = serviceM;
         }
 
         private void FormPutInStore_Load(object sender, EventArgs e)
         {
             try
             {
-                List<MaterialViewModel> listC = serviceC.GetList();
-                if (listC != null)
+                List<MaterialViewModel> listM = APIClient.GetRequest<List<MaterialViewModel>>("api/Material/GetList");
+                if (listM != null)
                 {
                     comboBoxMaterial.DisplayMember = "MaterialName";
                     comboBoxMaterial.ValueMember = "Id";
-                    comboBoxMaterial.DataSource = listC;
+                    comboBoxMaterial.DataSource = listM;
                     comboBoxMaterial.SelectedItem = null;
                 }
-                List<StoreViewModel> listS = serviceS.GetList();
+                List<StoreViewModel> listS = APIClient.GetRequest<List<StoreViewModel>>("api/Store/GetList");
                 if (listS != null)
                 {
                     comboBoxStore.DisplayMember = "StoreName";
@@ -77,7 +63,7 @@ namespace AbstractSweetShopView
             }
             try
             {
-                serviceM.PutMaterialInStore(new StoreMaterialBindingModel
+                APIClient.PostRequest<StoreMaterialBindingModel, bool>("api/StoreMaterial/PutMaterialInStore", new StoreMaterialBindingModel
                 {
                     MaterialId = Convert.ToInt32(comboBoxMaterial.SelectedValue),
                     StoreId = Convert.ToInt32(comboBoxStore.SelectedValue),

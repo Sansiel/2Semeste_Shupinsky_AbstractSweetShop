@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using AbstractSweetShopServiceDAL.Interfaces;
+using AbstractSweetShopServiceDAL.BindingModels;
 using AbstractSweetShopServiceDAL.ViewModels;
-using Unity;
 
 namespace AbstractSweetShopView
 {
     public partial class FormCandyMaterial : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
 
         public CandyMaterialViewModel Model
         {
@@ -18,21 +15,18 @@ namespace AbstractSweetShopView
             get { return model; }
         }
 
-        private readonly IMaterialService service;
-
         private CandyMaterialViewModel model;
 
-        public FormCandyMaterial(IMaterialService service)
+        public FormCandyMaterial()
         {
             InitializeComponent();
-            this.service = service;
         }
 
         private void FormCandyMaterial_Load(object sender, EventArgs e)
         {
             try
             {
-                List<MaterialViewModel> list = service.GetList();
+                List<MaterialViewModel> list = APIClient.GetRequest<List<MaterialViewModel>>("api/Material/GetList");
                 if (list != null)
                 {
                     comboBoxMaterial.DisplayMember = "MaterialName";

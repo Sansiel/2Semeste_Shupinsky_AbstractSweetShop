@@ -2,29 +2,22 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using AbstractSweetShopServiceDAL.BindingModels;
-using AbstractSweetShopServiceDAL.Interfaces;
 using AbstractSweetShopServiceDAL.ViewModels;
-using Unity;
 
 namespace AbstractSweetShopView
 {
     public partial class FormCandy : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
 
         public int Id { set { id = value; } }
-
-        private readonly ICandyService service;
 
         private int? id;
 
         private List<CandyMaterialViewModel> CandyMaterials;
 
-        public FormCandy(ICandyService service)
+        public FormCandy()
         {
             InitializeComponent();
-            this.service = service;
         }
 
         private void FormCandy_Load(object sender, EventArgs e)
@@ -33,7 +26,7 @@ namespace AbstractSweetShopView
             {
                 try
                 {
-                    CandyViewModel view = service.GetElement(id.Value);
+                    CandyViewModel view = APIClient.GetRequest<CandyViewModel>("api/Candy/Get/" + id.Value);
                     if (view != null)
                     {
                         textBoxName.Text = view.CandyName;
@@ -78,7 +71,7 @@ namespace AbstractSweetShopView
 
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormCandyMaterial>();
+            var form = new FormCandyMaterial();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 if (form.Model != null)
@@ -97,7 +90,7 @@ namespace AbstractSweetShopView
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                var form = Container.Resolve<FormCandyMaterial>();
+                var form = new FormCandyMaterial();
                 form.Model = CandyMaterials[dataGridView.SelectedRows[0].Cells[0].RowIndex];
                 if (form.ShowDialog() == DialogResult.OK)
                 {
@@ -168,7 +161,7 @@ namespace AbstractSweetShopView
                 }
                 if (id.HasValue)
                 {
-                    service.UpdElement(new CandyBindingModel
+                    APIClient.PostRequest<CandyBindingModel, bool>("api/Candy/UpdElement", new CandyBindingModel
                     {
                         Id = id.Value,
                         CandyName = textBoxName.Text,
@@ -178,7 +171,7 @@ namespace AbstractSweetShopView
                 }
                 else
                 {
-                    service.AddElement(new CandyBindingModel
+                    APIClient.PostRequest<CandyBindingModel, bool>("api/Candy/AddElement", new CandyBindingModel
                     {
                         CandyName = textBoxName.Text,
                         Price = Convert.ToInt32(textBoxPrice.Text),

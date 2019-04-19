@@ -1,23 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using AbstractSweetShopServiceDAL.Interfaces;
+using AbstractSweetShopServiceDAL.BindingModels;
 using AbstractSweetShopServiceDAL.ViewModels;
-using Unity;
 
 namespace AbstractSweetShopView
 {
     public partial class FormBuyers : Form
-    {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-
-        private readonly IBuyerService service;
-
-        public FormBuyers(IBuyerService service)
+    { 
+        public FormBuyers()
         {
             InitializeComponent();
-            this.service = service;
         }
 
         private void FormClients_Load(object sender, EventArgs e)
@@ -29,7 +22,7 @@ namespace AbstractSweetShopView
         {
             try
             {
-                List<BuyerViewModel> list = service.GetList();
+                List<BuyerViewModel> list = APIClient.GetRequest<List<BuyerViewModel>>("api/Buyer/GetList");
                 if (list != null)
                 {
                     dataGridView.DataSource = list;
@@ -45,7 +38,7 @@ namespace AbstractSweetShopView
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormBuyer>();
+            var form = new FormBuyer();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
@@ -56,7 +49,7 @@ namespace AbstractSweetShopView
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                var form = Container.Resolve<FormBuyer>();
+                var form = new FormBuyer();
                 form.Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 if (form.ShowDialog() == DialogResult.OK)
                 {
@@ -76,7 +69,7 @@ namespace AbstractSweetShopView
                     Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                     try
                     {
-                        service.DelElement(id);
+                        APIClient.PostRequest<BuyerBindingModel, bool>("api/Buyer/DelElement", new BuyerBindingModel { Id = id });
                     }
                     catch (Exception ex)
                     {

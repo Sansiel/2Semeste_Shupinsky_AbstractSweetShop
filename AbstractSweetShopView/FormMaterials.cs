@@ -1,24 +1,16 @@
 ﻿using System;
 using System.Windows.Forms;
 using AbstractSweetShopServiceDAL.BindingModels;
-using AbstractSweetShopServiceDAL.Interfaces;
 using AbstractSweetShopServiceDAL.ViewModels;
-using Unity;
 using System.Collections.Generic;
 
 namespace AbstractSweetShopView
 {
     public partial class FormMaterials : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-
-        private readonly IMaterialService service;
-
-        public FormMaterials(IMaterialService service)
+        public FormMaterials()
         {
             InitializeComponent();
-            this.service = service;
         }
         
         private void FormMaterial_Load(object sender, EventArgs e)
@@ -30,7 +22,7 @@ namespace AbstractSweetShopView
         {
             try
             {
-                List<MaterialViewModel> list = service.GetList();
+                List<MaterialViewModel> list = APIClient.GetRequest<List<MaterialViewModel>>("api/Material/GetList");
                 if (list != null)
                 {
                     dataGridView.DataSource = list;
@@ -49,7 +41,7 @@ namespace AbstractSweetShopView
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormMaterial>();
+            var form = new FormMaterial();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
@@ -60,7 +52,7 @@ namespace AbstractSweetShopView
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                var form = Container.Resolve<FormMaterial>();
+                var form = new FormMaterial();
                 form.Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 if (form.ShowDialog() == DialogResult.OK)
                 {
@@ -79,7 +71,7 @@ namespace AbstractSweetShopView
                     Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                     try
                     {
-                        service.DelElement(id);
+                        APIClient.PostRequest<MaterialBindingModel, bool>("api/Material/DelElement", new MaterialBindingModel { Id = id });
                     }
                     catch (Exception ex)
                     {

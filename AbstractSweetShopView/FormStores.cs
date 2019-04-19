@@ -1,23 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using AbstractSweetShopServiceDAL.Interfaces;
+using AbstractSweetShopServiceDAL.BindingModels;
 using AbstractSweetShopServiceDAL.ViewModels;
-using Unity;
 
 namespace AbstractSweetShopView
 {
     public partial class FormStores : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-
-        private readonly IStoreService service;
-
-        public FormStores(IStoreService service)
+        public FormStores()
         {
             InitializeComponent();
-            this.service = service;
         }
 
         private void FormStores_Load(object sender, EventArgs e)
@@ -29,7 +22,7 @@ namespace AbstractSweetShopView
         {
             try
             {
-                List<StoreViewModel> list = service.GetList();
+                List<StoreViewModel> list = APIClient.GetRequest<List<StoreViewModel>>("api/Store/GetList");
                 if (list != null)
                 {
                     dataGridView.DataSource = list;
@@ -47,7 +40,7 @@ namespace AbstractSweetShopView
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormStore>();
+            var form = new FormStore();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
@@ -58,7 +51,7 @@ namespace AbstractSweetShopView
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                var form = Container.Resolve<FormStore>();
+                var form = new FormStore();
                 form.Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 if (form.ShowDialog() == DialogResult.OK)
                 {
@@ -78,7 +71,7 @@ namespace AbstractSweetShopView
                     Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                     try
                     {
-                        service.DelElement(id);
+                        APIClient.PostRequest<StoreBindingModel, bool>("api/Store/DelElement", new StoreBindingModel { Id = id });
                     }
                     catch (Exception ex)
                     {

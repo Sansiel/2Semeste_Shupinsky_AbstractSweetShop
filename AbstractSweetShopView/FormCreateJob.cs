@@ -2,49 +2,34 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using AbstractSweetShopServiceDAL.BindingModels;
-using AbstractSweetShopServiceDAL.Interfaces;
 using AbstractSweetShopServiceDAL.ViewModels;
-using Unity;
 
 namespace AbstractSweetShopView
 {
     public partial class FormCreateJob : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-
-        private readonly IBuyerService serviceC;
-
-        private readonly ICandyService serviceP;
-
-        private readonly IMainService serviceM;
-
-        public FormCreateJob(IBuyerService serviceC, ICandyService serviceP, IMainService serviceM)
+        public FormCreateJob()
         {
-            
             InitializeComponent();
-            this.serviceC = serviceC;
-            this.serviceP = serviceP;
-            this.serviceM = serviceM;
         }
         private void FormCreateJob_Load(object sender, EventArgs e)
         {
             try
             {
-                List<BuyerViewModel> listC = serviceC.GetList();
-                if (listC != null)
+                List<BuyerViewModel> listB = APIClient.GetRequest<List<BuyerViewModel>>("api/Buyer/GetList");
+                if (listB != null)
                 {
                     comboBoxClient.DisplayMember = "BuyerFIO";
                     comboBoxClient.ValueMember = "Id";
-                    comboBoxClient.DataSource = listC;
+                    comboBoxClient.DataSource = listB;
                     comboBoxClient.SelectedItem = null;
                 }
-                List<CandyViewModel> listP = serviceP.GetList();
-                if (listP != null)
+                List<CandyViewModel> listC = APIClient.GetRequest<List<CandyViewModel>>("api/Candy/GetList");
+                if (listC != null)
                 {
                     comboBoxCandy.DisplayMember = "CandyName";
                     comboBoxCandy.ValueMember = "Id";
-                    comboBoxCandy.DataSource = listP;
+                    comboBoxCandy.DataSource = listC;
                     comboBoxCandy.SelectedItem = null;
                 }
             }
@@ -63,7 +48,7 @@ namespace AbstractSweetShopView
                 try
                 {
                     int id = Convert.ToInt32(comboBoxCandy.SelectedValue);
-                    CandyViewModel Candy = serviceP.GetElement(id);
+                    CandyViewModel Candy = APIClient.GetRequest<CandyViewModel>("api/Candy/Get/" + id);
                     int count = Convert.ToInt32(textBoxCount.Text);
                     textBoxSum.Text = (count * Candy.Price).ToString();
                 }
@@ -108,7 +93,7 @@ namespace AbstractSweetShopView
             }
             try
             {
-                serviceM.CreateJob(new JobBindingModel
+                APIClient.PostRequest<JobBindingModel, bool>("api/Job/CreateJob", new JobBindingModel
                 {
                     BuyerId = Convert.ToInt32(comboBoxClient.SelectedValue),
                     CandyId = Convert.ToInt32(comboBoxCandy.SelectedValue),

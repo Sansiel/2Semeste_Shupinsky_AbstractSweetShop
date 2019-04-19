@@ -1,27 +1,19 @@
 ﻿using System;
 using System.Windows.Forms;
 using AbstractSweetShopServiceDAL.BindingModels;
-using AbstractSweetShopServiceDAL.Interfaces;
 using AbstractSweetShopServiceDAL.ViewModels;
-using Unity;
 
 namespace AbstractSweetShopView
 {
     public partial class FormStore : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-
         public int Id { set { id = value; } }
-
-        private readonly IStoreService service;
-
+        
         private int? id;
 
-        public FormStore(IStoreService service)
+        public FormStore()
         {
             InitializeComponent();
-            this.service = service;
         }
 
         private void FormStore_Load(object sender, EventArgs e)
@@ -30,7 +22,7 @@ namespace AbstractSweetShopView
             {
                 try
                 {
-                    StoreViewModel view = service.GetElement(id.Value);
+                    StoreViewModel view = APIClient.GetRequest<StoreViewModel>("api/Store/Get/" + id.Value);
                     if (view != null)
                     {
                         textBoxName.Text = view.StoreName;
@@ -62,7 +54,7 @@ namespace AbstractSweetShopView
             {
                 if (id.HasValue)
                 {
-                    service.UpdElement(new StoreBindingModel
+                    APIClient.PostRequest<StoreBindingModel, bool>("api/Store/UpdElement", new StoreBindingModel
                     {
                         Id = id.Value,
                         StoreName = textBoxName.Text
@@ -70,7 +62,7 @@ namespace AbstractSweetShopView
                 }
                 else
                 {
-                    service.AddElement(new StoreBindingModel
+                    APIClient.PostRequest<StoreBindingModel, bool>("api/Buyer/AddElement", new StoreBindingModel
                     {
                         StoreName = textBoxName.Text
                     });

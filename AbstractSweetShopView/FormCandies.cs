@@ -1,24 +1,16 @@
 ﻿using System;
 using System.Windows.Forms;
 using AbstractSweetShopServiceDAL.BindingModels;
-using AbstractSweetShopServiceDAL.Interfaces;
 using AbstractSweetShopServiceDAL.ViewModels;
-using Unity;
 using System.Collections.Generic;
 
 namespace AbstractSweetShopView
 {
     public partial class FormCandies : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-
-        private readonly ICandyService service;
-
-        public FormCandies(ICandyService service)
+        public FormCandies()
         {
             InitializeComponent();
-            this.service = service;
         }
 
         private void FormMaterial_Load(object sender, EventArgs e)
@@ -30,7 +22,7 @@ namespace AbstractSweetShopView
         {
             try
             {
-                List<CandyViewModel> list = service.GetList();
+                List<CandyViewModel> list = APIClient.GetRequest<List<CandyViewModel>>("api/Candy/GetList");
                 if (list != null)
                 {
                     dataGridView.DataSource = list;
@@ -46,7 +38,7 @@ namespace AbstractSweetShopView
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormCandy>();
+            var form = new FormCandy();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
@@ -57,7 +49,7 @@ namespace AbstractSweetShopView
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                var form = Container.Resolve<FormCandy>();
+                var form = new FormCandy();
                 form.Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 if (form.ShowDialog() == DialogResult.OK)
                 {
@@ -76,7 +68,7 @@ namespace AbstractSweetShopView
                     Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                     try
                     {
-                        service.DelElement(id);
+                        APIClient.PostRequest<CandyBindingModel, bool>("api/Candy/DelElement", new CandyBindingModel { Id = id });
                     }
                     catch (Exception ex)
                     {

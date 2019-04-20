@@ -40,6 +40,7 @@
             this.прайсИзделийToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.загруженностьСкладаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.заказыКлиентовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.запускРаботToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clientIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,10 +54,9 @@
             this.dateImplementDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.JobViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.buttonCreateJob = new System.Windows.Forms.Button();
-            this.buttonTakeJobInWork = new System.Windows.Forms.Button();
-            this.buttonJobReady = new System.Windows.Forms.Button();
             this.buttonPayJob = new System.Windows.Forms.Button();
             this.buttonUpdate = new System.Windows.Forms.Button();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.JobViewModelBindingSource)).BeginInit();
@@ -68,7 +68,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.справочникToolStripMenuItem,
             this.пополнитьСкладToolStripMenuItem,
-            this.отчётыToolStripMenuItem});
+            this.отчётыToolStripMenuItem,
+            this.запускРаботToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(995, 28);
@@ -151,6 +152,13 @@
             this.заказыКлиентовToolStripMenuItem.Size = new System.Drawing.Size(239, 26);
             this.заказыКлиентовToolStripMenuItem.Text = "Заказы клиентов";
             this.заказыКлиентовToolStripMenuItem.Click += new System.EventHandler(this.заказыКлиентовToolStripMenuItem_Click);
+            // 
+            // запускРаботToolStripMenuItem
+            // 
+            this.запускРаботToolStripMenuItem.Name = "запускРаботToolStripMenuItem";
+            this.запускРаботToolStripMenuItem.Size = new System.Drawing.Size(112, 24);
+            this.запускРаботToolStripMenuItem.Text = "Запуск работ";
+            this.запускРаботToolStripMenuItem.Click += new System.EventHandler(this.запускРаботToolStripMenuItem_Click);
             // 
             // dataGridView
             // 
@@ -248,26 +256,6 @@
             this.buttonCreateJob.UseVisualStyleBackColor = true;
             this.buttonCreateJob.Click += new System.EventHandler(this.buttonCreateJob_Click);
             // 
-            // buttonTakeJobInWork
-            // 
-            this.buttonTakeJobInWork.Location = new System.Drawing.Point(772, 123);
-            this.buttonTakeJobInWork.Name = "buttonTakeJobInWork";
-            this.buttonTakeJobInWork.Size = new System.Drawing.Size(198, 32);
-            this.buttonTakeJobInWork.TabIndex = 3;
-            this.buttonTakeJobInWork.Text = "Отдать на выполнение";
-            this.buttonTakeJobInWork.UseVisualStyleBackColor = true;
-            this.buttonTakeJobInWork.Click += new System.EventHandler(this.buttonTakeJobInWork_Click);
-            // 
-            // buttonJobReady
-            // 
-            this.buttonJobReady.Location = new System.Drawing.Point(775, 192);
-            this.buttonJobReady.Name = "buttonJobReady";
-            this.buttonJobReady.Size = new System.Drawing.Size(195, 36);
-            this.buttonJobReady.TabIndex = 4;
-            this.buttonJobReady.Text = "Заказ готов";
-            this.buttonJobReady.UseVisualStyleBackColor = true;
-            this.buttonJobReady.Click += new System.EventHandler(this.buttonJobReady_Click);
-            // 
             // buttonPayJob
             // 
             this.buttonPayJob.Location = new System.Drawing.Point(778, 268);
@@ -288,15 +276,23 @@
             this.buttonUpdate.UseVisualStyleBackColor = true;
             this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 28);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(995, 25);
+            this.toolStrip1.TabIndex = 7;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(995, 459);
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.buttonUpdate);
             this.Controls.Add(this.buttonPayJob);
-            this.Controls.Add(this.buttonJobReady);
-            this.Controls.Add(this.buttonTakeJobInWork);
             this.Controls.Add(this.buttonCreateJob);
             this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.menuStrip1);
@@ -322,8 +318,6 @@
         private System.Windows.Forms.ToolStripMenuItem изделияToolStripMenuItem;
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.Button buttonCreateJob;
-        private System.Windows.Forms.Button buttonTakeJobInWork;
-        private System.Windows.Forms.Button buttonJobReady;
         private System.Windows.Forms.Button buttonPayJob;
         private System.Windows.Forms.Button buttonUpdate;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
@@ -343,6 +337,8 @@
         private System.Windows.Forms.ToolStripMenuItem прайсИзделийToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem загруженностьСкладаToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem заказыКлиентовToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem запускРаботToolStripMenuItem;
+        private System.Windows.Forms.ToolStrip toolStrip1;
     }
 }
 

@@ -105,6 +105,18 @@ namespace AbstractSweetShopServiceImplementDataBase.Implementations
             context.SaveChanges();
         }
 
+        public List<JobViewModel> GetFreeJobs()
+        {
+            List<JobViewModel> result = context.Jobs
+            .Where(x => x.Status == JobStatus.Принят || x.Status == JobStatus.НедостаточноРесурсов)
+            .Select(rec => new JobViewModel
+            {
+                Id = rec.Id
+            })
+            .ToList();
+            return result;
+        }
+
         public void TakeJobInWork(JobBindingModel model)
         {
             using (var transaction = context.Database.BeginTransaction())

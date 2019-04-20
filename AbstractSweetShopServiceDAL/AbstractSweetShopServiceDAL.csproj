@@ -44,11 +44,13 @@
     <Compile Include="BindingModels\BuyerBindingModel.cs" />
     <Compile Include="BindingModels\CandyBindingModel.cs" />
     <Compile Include="BindingModels\CandyMaterialBindingModel.cs" />
+    <Compile Include="BindingModels\ExecutorBindingModel.cs" />
     <Compile Include="BindingModels\MaterialBindingModel.cs" />
     <Compile Include="BindingModels\JobBindingModel.cs" />
     <Compile Include="BindingModels\ReportBindingModel.cs" />
     <Compile Include="BindingModels\StoreBindingModel.cs" />
     <Compile Include="BindingModels\StoreMaterialBindingModel.cs" />
+    <Compile Include="Interfaces\IExecutorService.cs" />
     <Compile Include="Interfaces\IBuyerService.cs" />
     <Compile Include="Interfaces\ICandyService.cs" />
     <Compile Include="Interfaces\IMainService.cs" />
@@ -60,6 +62,7 @@
     <Compile Include="ViewModels\CandyMaterialViewModel.cs" />
     <Compile Include="ViewModels\CandyViewModel.cs" />
     <Compile Include="ViewModels\BuyerViewModel.cs" />
+    <Compile Include="ViewModels\ExecutorViewModel.cs" />
     <Compile Include="ViewModels\MaterialViewModel.cs" />
     <Compile Include="ViewModels\JobViewModel.cs" />
     <Compile Include="ViewModels\StoreLoadViewModel.cs" />

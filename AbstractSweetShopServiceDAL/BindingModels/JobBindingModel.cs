@@ -15,6 +15,9 @@ namespace AbstractSweetShopServiceDAL.BindingModels
         public int CandyId { get; set; }
 
         [DataMember]
+        public int? ExecutorId { get; set; }
+
+        [DataMember]
         public int Count { get; set; }
 
         [DataMember]

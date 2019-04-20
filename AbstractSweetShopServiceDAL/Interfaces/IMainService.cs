@@ -7,6 +7,7 @@ namespace AbstractSweetShopServiceDAL.Interfaces
     public interface IMainService
     {
         List<JobViewModel> GetList();
+        List<JobViewModel> GetFreeJobs();
         void CreateJob(JobBindingModel model);
         void TakeJobInWork(JobBindingModel model);
         void FinishJob(JobBindingModel model);

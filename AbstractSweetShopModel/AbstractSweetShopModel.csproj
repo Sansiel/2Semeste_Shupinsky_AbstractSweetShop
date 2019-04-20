@@ -50,6 +50,7 @@
     <Compile Include="Buyer.cs" />
     <Compile Include="Candy.cs" />
     <Compile Include="CandyMaterial.cs" />
+    <Compile Include="Executor.cs" />
     <Compile Include="Material.cs" />
     <Compile Include="Job.cs" />
     <Compile Include="JobStatus.cs" />

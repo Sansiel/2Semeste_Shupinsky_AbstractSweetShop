@@ -7,6 +7,7 @@ namespace AbstractSweetShopModel
         public int Id { get; set; }
         public int BuyerId { get; set; }
         public int CandyId { get; set; }
+        public int? ExecutorId { get; set; }
         public int Count { get; set; }
         public decimal Sum { get; set; }
         public JobStatus Status { get; set; }
@@ -14,5 +15,6 @@ namespace AbstractSweetShopModel
         public DateTime? DateImplement { get; set; }
         public virtual Buyer Buyer { get; set; }
         public virtual Candy Candy { get; set; }
+        public virtual Executor Executor { get; set; }
     }
 }

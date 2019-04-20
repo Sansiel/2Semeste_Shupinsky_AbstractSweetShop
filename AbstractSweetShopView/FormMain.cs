@@ -58,42 +58,6 @@ namespace AbstractSweetShopView
             LoadData();
         }
 
-        private void buttonTakeJobInWork_Click(object sender, EventArgs e)
-        {
-            if (dataGridView.SelectedRows.Count == 1)
-            {
-                int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
-                try
-                {
-                    APIClient.PostRequest<JobBindingModel,bool>("api/Main/TakeJobInWork", new JobBindingModel { Id = id });
-                    LoadData();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        private void buttonJobReady_Click(object sender, EventArgs e)
-        {
-            if (dataGridView.SelectedRows.Count == 1)
-            {
-                int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
-                try
-                {
-                    APIClient.PostRequest<JobBindingModel, bool>("api/Main/FinishJob", new JobBindingModel { Id = id });
-                    LoadData();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-                }
-            }
-        }
-
         private void buttonPayJob_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
@@ -166,6 +130,21 @@ namespace AbstractSweetShopView
         {
             var form = new FormBuyerJobs();
             form.ShowDialog();
+        }
+
+        private void запускРаботToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                APIClient.PostRequest<int?, bool>("api/Main/StartWork", null);
+                MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+            }
         }
     }
 }

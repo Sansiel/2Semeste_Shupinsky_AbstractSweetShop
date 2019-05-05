@@ -12,12 +12,12 @@ namespace AbstractSweetShopRestApi.Controllers
     {
         private readonly IMainService _service;
 
-        private readonly IExecutorService _serviceImplementer;
+        private readonly IExecutorService _serviceExecutorr;
 
-        public MainController(IMainService service, IExecutorService serviceImplementer)
+        public MainController(IMainService service, IExecutorService serviceExecutor)
         {
             _service = service;
-            _serviceImplementer = serviceImplementer;
+            _serviceExecutorr = serviceExecutor;
         }
 
         [HttpGet]
@@ -61,12 +61,12 @@ namespace AbstractSweetShopRestApi.Controllers
             List<JobViewModel> jobs = _service.GetFreeJobs();
             foreach (var job in jobs)
             {
-                ExecutorViewModel exec = _serviceImplementer.GetFreeWorker();
+                ExecutorViewModel exec = _serviceExecutorr.GetFreeWorker();
                 if (exec == null)
                 {
                     throw new Exception("Нет сотрудников");
                 }
-                new WorkExecutor(_service, _serviceImplementer, exec.Id, job.Id);
+                new WorkExecutor(_service, _serviceExecutorr, exec.Id, job.Id);
             }
         }
     }

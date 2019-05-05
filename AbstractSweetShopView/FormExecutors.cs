@@ -38,7 +38,7 @@ namespace AbstractSweetShopView
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var form = new FormBuyer();
+            var form = new FormExecutor();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
@@ -49,7 +49,7 @@ namespace AbstractSweetShopView
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                var form = new FormBuyer();
+                var form = new FormExecutor();
                 form.Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 if (form.ShowDialog() == DialogResult.OK)
                 {

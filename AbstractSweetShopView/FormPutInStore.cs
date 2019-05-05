@@ -63,7 +63,7 @@ namespace AbstractSweetShopView
             }
             try
             {
-                APIClient.PostRequest<StoreMaterialBindingModel, bool>("api/StoreMaterial/PutMaterialInStore", new StoreMaterialBindingModel
+                APIClient.PostRequest<StoreMaterialBindingModel, bool>("api/Main/PutMaterialInStore", new StoreMaterialBindingModel
                 {
                     MaterialId = Convert.ToInt32(comboBoxMaterial.SelectedValue),
                     StoreId = Convert.ToInt32(comboBoxStore.SelectedValue),

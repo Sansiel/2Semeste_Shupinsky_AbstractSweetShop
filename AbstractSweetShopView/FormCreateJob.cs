@@ -93,12 +93,12 @@ namespace AbstractSweetShopView
             }
             try
             {
-                APIClient.PostRequest<JobBindingModel, bool>("api/Job/CreateJob", new JobBindingModel
+                APIClient.PostRequest<JobBindingModel, bool>("api/Main/CreateJob", new JobBindingModel
                 {
                     BuyerId = Convert.ToInt32(comboBoxClient.SelectedValue),
                     CandyId = Convert.ToInt32(comboBoxCandy.SelectedValue),
                     Count = Convert.ToInt32(textBoxCount.Text),
-                    Sum = Convert.ToInt32(textBoxSum.Text)
+                    Sum = Convert.ToDecimal(textBoxSum.Text)
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);

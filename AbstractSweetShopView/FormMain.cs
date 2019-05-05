@@ -65,7 +65,7 @@ namespace AbstractSweetShopView
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 try
                 {
-                    APIClient.PostRequest<JobBindingModel, bool>("api/Main/.PayJob", new JobBindingModel { Id = id });
+                    APIClient.PostRequest<JobBindingModel, bool>("api/Main/PayJob", new JobBindingModel { Id = id });
                     LoadData();
                 }
                 catch (Exception ex)
@@ -137,14 +137,19 @@ namespace AbstractSweetShopView
             try
             {
                 APIClient.PostRequest<int?, bool>("api/Main/StartWork", null);
-                MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
+                MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
             }
+        }
+
+        private void исполнителиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new FormExecutors();
+            form.ShowDialog();
         }
     }
 }

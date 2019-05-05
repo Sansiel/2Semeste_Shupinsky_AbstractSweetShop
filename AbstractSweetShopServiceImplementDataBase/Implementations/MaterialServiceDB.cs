@@ -22,7 +22,7 @@ namespace AbstractSweetShopServiceImplementDataBase.Implementations
             Material element = context.Materials.FirstOrDefault(rec => rec.MaterialName == model.MaterialName);
             if (element != null)
             {
-                throw new Exception("Уже есть клиент с таким ФИО");
+                throw new Exception("Уже есть материал с таким названием");
             }
             context.Materials.Add(new Material
             {
@@ -75,7 +75,7 @@ namespace AbstractSweetShopServiceImplementDataBase.Implementations
             Material element = context.Materials.FirstOrDefault(rec => rec.MaterialName == model.MaterialName && rec.Id != model.Id);
             if (element != null)
             {
-                throw new Exception("Уже есть клиент с таким ФИО");
+                throw new Exception("Уже есть материал с таким названием");
             }
             element = context.Materials.FirstOrDefault(rec => rec.Id == model.Id);
             if (element == null)

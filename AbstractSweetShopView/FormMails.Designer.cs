@@ -1,6 +1,6 @@
 ﻿namespace AbstractSweetShopView
 {
-    partial class FormBuyer
+    partial class FormMails
     {
         /// <summary>
         /// Required designer variable.
@@ -29,12 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.textBoxFIO = new System.Windows.Forms.TextBox();
-            this.buttonSaveFIO = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.buttonCancelFIO = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBoxMail = new System.Windows.Forms.TextBox();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.messageInfoViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.messageIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,60 +39,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.messageInfoViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // textBoxFIO
-            // 
-            this.textBoxFIO.Location = new System.Drawing.Point(120, 16);
-            this.textBoxFIO.Multiline = true;
-            this.textBoxFIO.Name = "textBoxFIO";
-            this.textBoxFIO.Size = new System.Drawing.Size(258, 27);
-            this.textBoxFIO.TabIndex = 1;
-            // 
-            // buttonSaveFIO
-            // 
-            this.buttonSaveFIO.Location = new System.Drawing.Point(120, 49);
-            this.buttonSaveFIO.Name = "buttonSaveFIO";
-            this.buttonSaveFIO.Size = new System.Drawing.Size(114, 26);
-            this.buttonSaveFIO.TabIndex = 2;
-            this.buttonSaveFIO.Text = "Сохранить";
-            this.buttonSaveFIO.UseVisualStyleBackColor = true;
-            this.buttonSaveFIO.Click += new System.EventHandler(this.buttonSaveFIO_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(34, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 17);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "ФИО";
-            // 
-            // buttonCancelFIO
-            // 
-            this.buttonCancelFIO.Location = new System.Drawing.Point(240, 49);
-            this.buttonCancelFIO.Name = "buttonCancelFIO";
-            this.buttonCancelFIO.Size = new System.Drawing.Size(137, 26);
-            this.buttonCancelFIO.TabIndex = 4;
-            this.buttonCancelFIO.Text = "Отмена";
-            this.buttonCancelFIO.UseVisualStyleBackColor = true;
-            this.buttonCancelFIO.Click += new System.EventHandler(this.buttonCancelFIO_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(404, 17);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(47, 17);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "почта";
-            // 
-            // textBoxMail
-            // 
-            this.textBoxMail.Location = new System.Drawing.Point(475, 17);
-            this.textBoxMail.Multiline = true;
-            this.textBoxMail.Name = "textBoxMail";
-            this.textBoxMail.Size = new System.Drawing.Size(431, 26);
-            this.textBoxMail.TabIndex = 6;
             // 
             // dataGridView
             // 
@@ -111,11 +51,11 @@
             this.subjectDataGridViewTextBoxColumn,
             this.bodyDataGridViewTextBoxColumn});
             this.dataGridView.DataSource = this.messageInfoViewModelBindingSource;
-            this.dataGridView.Location = new System.Drawing.Point(37, 88);
+            this.dataGridView.Location = new System.Drawing.Point(12, 9);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowTemplate.Height = 24;
-            this.dataGridView.Size = new System.Drawing.Size(936, 332);
-            this.dataGridView.TabIndex = 7;
+            this.dataGridView.Size = new System.Drawing.Size(855, 607);
+            this.dataGridView.TabIndex = 0;
             // 
             // messageInfoViewModelBindingSource
             // 
@@ -151,36 +91,23 @@
             this.bodyDataGridViewTextBoxColumn.HeaderText = "Body";
             this.bodyDataGridViewTextBoxColumn.Name = "bodyDataGridViewTextBoxColumn";
             // 
-            // FormBuyer
+            // FormMails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1050, 435);
+            this.ClientSize = new System.Drawing.Size(883, 625);
             this.Controls.Add(this.dataGridView);
-            this.Controls.Add(this.textBoxMail);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.buttonCancelFIO);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.buttonSaveFIO);
-            this.Controls.Add(this.textBoxFIO);
-            this.Name = "FormBuyer";
-            this.Text = "Клиент";
-            this.Load += new System.EventHandler(this.FormClient_Load);
+            this.Name = "FormMails";
+            this.Text = "Письма";
+            this.Load += new System.EventHandler(this.FormMails_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.messageInfoViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBoxFIO;
-        private System.Windows.Forms.Button buttonSaveFIO;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button buttonCancelFIO;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBoxMail;
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn messageIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn buyerNameDataGridViewTextBoxColumn;

@@ -47,6 +47,7 @@
     <Compile Include="BindingModels\ExecutorBindingModel.cs" />
     <Compile Include="BindingModels\MaterialBindingModel.cs" />
     <Compile Include="BindingModels\JobBindingModel.cs" />
+    <Compile Include="BindingModels\MessageInfoBindingModel.cs" />
     <Compile Include="BindingModels\ReportBindingModel.cs" />
     <Compile Include="BindingModels\StoreBindingModel.cs" />
     <Compile Include="BindingModels\StoreMaterialBindingModel.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="Interfaces\ICandyService.cs" />
     <Compile Include="Interfaces\IMainService.cs" />
     <Compile Include="Interfaces\IMaterialService.cs" />
+    <Compile Include="Interfaces\IMessageInfoService.cs" />
     <Compile Include="Interfaces\IReportService.cs" />
     <Compile Include="Interfaces\IStoreService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,6 +67,7 @@
     <Compile Include="ViewModels\ExecutorViewModel.cs" />
     <Compile Include="ViewModels\MaterialViewModel.cs" />
     <Compile Include="ViewModels\JobViewModel.cs" />
+    <Compile Include="ViewModels\MessageInfoViewModel.cs" />
     <Compile Include="ViewModels\StoreLoadViewModel.cs" />
     <Compile Include="ViewModels\StoreMaterialViewModel.cs" />
     <Compile Include="ViewModels\StoreViewModel.cs" />
@@ -75,6 +78,8 @@
       <Name>AbstractSweetShopModel</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Properties\DataSources\AbstractSweetShopServiceDAL.ViewModels.MessageInfoViewModel.datasource" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

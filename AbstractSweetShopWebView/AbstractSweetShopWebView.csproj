@@ -203,12 +203,12 @@
     <Content Include="Views\Buyer\Create.cshtml" />
     <Content Include="Views\Buyer\Edit.cshtml" />
     <Content Include="Views\Buyer\Index.cshtml" />
+    <Content Include="Views\Main\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Candy\" />
-    <Folder Include="Views\Main\" />
     <Folder Include="Views\Material\" />
   </ItemGroup>
   <ItemGroup>

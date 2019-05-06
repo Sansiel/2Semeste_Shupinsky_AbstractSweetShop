@@ -11,12 +11,7 @@ namespace AbstractSweetShopModel
         [Required]
         public string BuyerFIO { get; set; }
 
-        public string Mail { get; set; }
-
         [ForeignKey("BuyerId")]
         public virtual List<Job> Jobs { get; set; }
-
-        [ForeignKey("BuyerId")]
-        public virtual List<MessageInfo> MessageInfos { get; set; }
     }
 }

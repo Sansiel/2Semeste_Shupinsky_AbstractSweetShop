@@ -119,7 +119,6 @@
     <Compile Include="Controllers\ExecutorController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\MaterialController.cs" />
-    <Compile Include="Controllers\MessageInfoController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Global.asax.cs">

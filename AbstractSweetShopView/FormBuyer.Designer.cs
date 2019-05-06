@@ -28,22 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.textBoxFIO = new System.Windows.Forms.TextBox();
             this.buttonSaveFIO = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonCancelFIO = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBoxMail = new System.Windows.Forms.TextBox();
-            this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.messageInfoViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.messageIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.buyerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateDeliveryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.subjectDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bodyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.messageInfoViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxFIO
@@ -83,82 +71,11 @@
             this.buttonCancelFIO.UseVisualStyleBackColor = true;
             this.buttonCancelFIO.Click += new System.EventHandler(this.buttonCancelFIO_Click);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(404, 17);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(47, 17);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "почта";
-            // 
-            // textBoxMail
-            // 
-            this.textBoxMail.Location = new System.Drawing.Point(475, 17);
-            this.textBoxMail.Multiline = true;
-            this.textBoxMail.Name = "textBoxMail";
-            this.textBoxMail.Size = new System.Drawing.Size(431, 26);
-            this.textBoxMail.TabIndex = 6;
-            // 
-            // dataGridView
-            // 
-            this.dataGridView.AutoGenerateColumns = false;
-            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.messageIdDataGridViewTextBoxColumn,
-            this.buyerNameDataGridViewTextBoxColumn,
-            this.dateDeliveryDataGridViewTextBoxColumn,
-            this.subjectDataGridViewTextBoxColumn,
-            this.bodyDataGridViewTextBoxColumn});
-            this.dataGridView.DataSource = this.messageInfoViewModelBindingSource;
-            this.dataGridView.Location = new System.Drawing.Point(37, 88);
-            this.dataGridView.Name = "dataGridView";
-            this.dataGridView.RowTemplate.Height = 24;
-            this.dataGridView.Size = new System.Drawing.Size(936, 332);
-            this.dataGridView.TabIndex = 7;
-            // 
-            // messageInfoViewModelBindingSource
-            // 
-            this.messageInfoViewModelBindingSource.DataSource = typeof(AbstractSweetShopServiceDAL.ViewModels.MessageInfoViewModel);
-            // 
-            // messageIdDataGridViewTextBoxColumn
-            // 
-            this.messageIdDataGridViewTextBoxColumn.DataPropertyName = "MessageId";
-            this.messageIdDataGridViewTextBoxColumn.HeaderText = "MessageId";
-            this.messageIdDataGridViewTextBoxColumn.Name = "messageIdDataGridViewTextBoxColumn";
-            // 
-            // buyerNameDataGridViewTextBoxColumn
-            // 
-            this.buyerNameDataGridViewTextBoxColumn.DataPropertyName = "BuyerName";
-            this.buyerNameDataGridViewTextBoxColumn.HeaderText = "BuyerName";
-            this.buyerNameDataGridViewTextBoxColumn.Name = "buyerNameDataGridViewTextBoxColumn";
-            // 
-            // dateDeliveryDataGridViewTextBoxColumn
-            // 
-            this.dateDeliveryDataGridViewTextBoxColumn.DataPropertyName = "DateDelivery";
-            this.dateDeliveryDataGridViewTextBoxColumn.HeaderText = "DateDelivery";
-            this.dateDeliveryDataGridViewTextBoxColumn.Name = "dateDeliveryDataGridViewTextBoxColumn";
-            // 
-            // subjectDataGridViewTextBoxColumn
-            // 
-            this.subjectDataGridViewTextBoxColumn.DataPropertyName = "Subject";
-            this.subjectDataGridViewTextBoxColumn.HeaderText = "Subject";
-            this.subjectDataGridViewTextBoxColumn.Name = "subjectDataGridViewTextBoxColumn";
-            // 
-            // bodyDataGridViewTextBoxColumn
-            // 
-            this.bodyDataGridViewTextBoxColumn.DataPropertyName = "Body";
-            this.bodyDataGridViewTextBoxColumn.HeaderText = "Body";
-            this.bodyDataGridViewTextBoxColumn.Name = "bodyDataGridViewTextBoxColumn";
-            // 
             // FormBuyer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1050, 435);
-            this.Controls.Add(this.dataGridView);
-            this.Controls.Add(this.textBoxMail);
-            this.Controls.Add(this.label2);
+            this.ClientSize = new System.Drawing.Size(395, 155);
             this.Controls.Add(this.buttonCancelFIO);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonSaveFIO);
@@ -166,8 +83,6 @@
             this.Name = "FormBuyer";
             this.Text = "Клиент";
             this.Load += new System.EventHandler(this.FormClient_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.messageInfoViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -179,14 +94,5 @@
         private System.Windows.Forms.Button buttonSaveFIO;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonCancelFIO;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBoxMail;
-        private System.Windows.Forms.DataGridView dataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn messageIdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn buyerNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dateDeliveryDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn subjectDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bodyDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource messageInfoViewModelBindingSource;
     }
 }

@@ -20,6 +20,5 @@ namespace AbstractSweetShopServiceImplementDataBase
         public virtual DbSet<Store> Stores { get; set; }
         public virtual DbSet<StoreMaterial> StoreMaterials { get; set; }
         public virtual DbSet<Executor> Executors { get; set; }
-        public virtual DbSet<MessageInfo> MessageInfos { get; set; }
     }
 }

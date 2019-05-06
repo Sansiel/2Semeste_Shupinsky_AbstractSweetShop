@@ -143,12 +143,6 @@
     <Compile Include="FormCreateJob.Designer.cs">
       <DependentUpon>FormCreateJob.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormMails.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormMails.Designer.cs">
-      <DependentUpon>FormMails.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -191,7 +185,6 @@
     <Compile Include="FormStores.Designer.cs">
       <DependentUpon>FormStores.cs</DependentUpon>
     </Compile>
-    <Compile Include="MailClient.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
@@ -221,9 +214,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormExecutors.resx">
       <DependentUpon>FormExecutors.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormMails.resx">
-      <DependentUpon>FormMails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
@@ -263,9 +253,7 @@
     <None Include="Properties\DataSources\AbstractSweetShopServiceDAL.ViewModels.CandyViewModel.datasource" />
     <None Include="Properties\DataSources\AbstractSweetShopServiceDAL.ViewModels.ClientViewModel.datasource" />
     <None Include="Properties\DataSources\AbstractSweetShopServiceDAL.ViewModels.ExecutorViewModel.datasource" />
-    <None Include="Properties\DataSources\AbstractSweetShopServiceDAL.ViewModels.JobViewModel.datasource" />
     <None Include="Properties\DataSources\AbstractSweetShopServiceDAL.ViewModels.MaterialViewModel.datasource" />
-    <None Include="Properties\DataSources\AbstractSweetShopServiceDAL.ViewModels.MessageInfoViewModel.datasource" />
     <None Include="Properties\DataSources\AbstractSweetShopServiceDAL.ViewModels.OrderViewModel.datasource" />
     <None Include="Properties\DataSources\AbstractSweetShopServiceDAL.ViewModels.StoreLoadViewModel.datasource" />
     <None Include="Properties\DataSources\AbstractSweetShopServiceDAL.ViewModels.StoreMaterialViewModel.datasource" />

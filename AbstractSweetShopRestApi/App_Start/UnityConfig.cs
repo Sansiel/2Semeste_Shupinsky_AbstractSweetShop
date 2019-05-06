@@ -54,7 +54,6 @@ namespace AbstractSweetShopRestApi
             container.RegisterType<IMainService, MainServiceDB>(new HierarchicalLifetimeManager());
             container.RegisterType<IReportService, ReportServiceDB>(new HierarchicalLifetimeManager());
             container.RegisterType<IExecutorService, ExecutorServiceDB>(new HierarchicalLifetimeManager());
-            container.RegisterType<IMessageInfoService, MessageInfoServiceDB>(new HierarchicalLifetimeManager());
         }
     }
 }

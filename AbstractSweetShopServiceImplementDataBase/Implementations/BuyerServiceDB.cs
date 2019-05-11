@@ -19,7 +19,8 @@ namespace AbstractSweetShopServiceImplementDataBase.Implementations
             List<BuyerViewModel> result = context.Buyers.Select(rec => new BuyerViewModel
             {
                 Id = rec.Id,
-                BuyerFIO = rec.BuyerFIO
+                BuyerFIO = rec.BuyerFIO,
+                Mail = rec.Mail
             })
             .ToList();
             return result;
@@ -32,7 +33,18 @@ namespace AbstractSweetShopServiceImplementDataBase.Implementations
                 return new BuyerViewModel
                 {
                     Id = element.Id,
-                    BuyerFIO = element.BuyerFIO
+                    BuyerFIO = element.BuyerFIO,
+                    Mail = element.Mail,
+                    Messages = context.MessageInfos
+                    .Where(recM => recM.BuyerId == element.Id)
+                    .Select(recM => new MessageInfoViewModel
+                    {
+                        MessageId = recM.MessageId,
+                        DateDelivery = recM.DateDelivery,
+                        Subject = recM.Subject,
+                        Body = recM.Body
+                    })
+                    .ToList()
                 };
             }
             throw new Exception("Элемент не найден");
@@ -47,7 +59,8 @@ namespace AbstractSweetShopServiceImplementDataBase.Implementations
             }
             context.Buyers.Add(new Buyer
             {
-                BuyerFIO = model.BuyerFIO
+                BuyerFIO = model.BuyerFIO,
+                Mail = model.Mail
             });
             context.SaveChanges();
         }
@@ -65,6 +78,7 @@ namespace AbstractSweetShopServiceImplementDataBase.Implementations
                 throw new Exception("Элемент не найден");
             }
             element.BuyerFIO = model.BuyerFIO;
+            element.Mail = model.Mail;
             context.SaveChanges();
         }
         public void DelElement(int id)

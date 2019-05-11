@@ -21,8 +21,8 @@ namespace AbstractSweetShopView
                     dataGridView.DataSource = list;
                     dataGridView.Columns[0].Visible = false;
                     dataGridView.Columns[1].Visible = false;
+                    dataGridView.Columns[6].Visible = false;
                     dataGridView.Columns[3].Visible = false;
-                    dataGridView.Columns[5].Visible = false;
                     dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
             }
@@ -149,6 +149,12 @@ namespace AbstractSweetShopView
         private void исполнителиToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = new FormExecutors();
+            form.ShowDialog();
+        }
+
+        private void письмаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new FormMails();
             form.ShowDialog();
         }
     }

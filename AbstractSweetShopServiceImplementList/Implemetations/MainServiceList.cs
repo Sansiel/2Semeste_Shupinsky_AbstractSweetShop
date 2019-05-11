@@ -144,5 +144,10 @@ namespace AbstractSweetShopServiceImplementList.Implemetations
                 });
             }
         }
+
+        public List<JobViewModel> GetFreeJobs()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

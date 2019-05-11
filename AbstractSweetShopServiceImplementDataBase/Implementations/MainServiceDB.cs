@@ -4,8 +4,11 @@ using AbstractSweetShopServiceDAL.Interfaces;
 using AbstractSweetShopServiceDAL.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity.SqlServer;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 
 namespace AbstractSweetShopServiceImplementDataBase.Implementations
 {
@@ -20,7 +23,7 @@ namespace AbstractSweetShopServiceImplementDataBase.Implementations
 
         public void CreateJob(JobBindingModel model)
         {
-            context.Jobs.Add(new Job
+            var job = new Job
             {
                 BuyerId = model.BuyerId,
                 CandyId = model.CandyId,
@@ -28,8 +31,11 @@ namespace AbstractSweetShopServiceImplementDataBase.Implementations
                 Count = model.Count,
                 Sum = model.Sum,
                 Status = JobStatus.Принят
-            });
+            };
+            context.Jobs.Add(job);
             context.SaveChanges();
+            var buyer = context.Buyers.FirstOrDefault(x => x.Id == model.BuyerId);
+            SendEmail(buyer.Mail, "Оповещение по заказам", string.Format("Заказ №{0} от { 1} создан успешно", job.Id, job.DateCreate.ToShortDateString()));
         }
 
         public void FinishJob(JobBindingModel model)
@@ -45,7 +51,8 @@ namespace AbstractSweetShopServiceImplementDataBase.Implementations
             }
             element.Status = JobStatus.Готов;
             context.SaveChanges();
-        }
+            SendEmail(element.Buyer.Mail, "Оповещение по заказам", string.Format("Заказ №{ 0} от { 1} передан на оплату", element.Id, element.DateCreate.ToShortDateString()));
+    }
 
         public List<JobViewModel> GetList()
         {
@@ -65,7 +72,22 @@ namespace AbstractSweetShopServiceImplementDataBase.Implementations
                 Count = rec.Count,
                 Sum = rec.Sum,
                 BuyerFIO = rec.Buyer.BuyerFIO,
-                CandyName = rec.Candy.CandyName
+                CandyName = rec.Candy.CandyName,
+                ExecutorId = rec.Executor.Id,
+                ExecutorName = rec.Executor.ExecutorFIO
+            })
+            .ToList();
+            return result;
+        }
+
+        public List<JobViewModel> GetFreeOrders()
+        {
+            List<JobViewModel> result = context.Jobs
+            .Where(x => x.Status == JobStatus.Принят || x.Status ==
+            JobStatus.НедостаточноРесурсов)
+            .Select(rec => new JobViewModel
+            {
+                Id = rec.Id
             })
             .ToList();
             return result;
@@ -84,6 +106,7 @@ namespace AbstractSweetShopServiceImplementDataBase.Implementations
             }
             element.Status = JobStatus.Оплачен;
             context.SaveChanges();
+            SendEmail(element.Buyer.Mail, "Оповещение по заказам", string.Format("Заказ №{ 0} от { 1} оплачен успешно", element.Id, element.DateCreate.ToShortDateString()));
         }
 
         public void PutMaterialInStore(StoreMaterialBindingModel model)
@@ -121,9 +144,9 @@ namespace AbstractSweetShopServiceImplementDataBase.Implementations
         {
             using (var transaction = context.Database.BeginTransaction())
             {
+                Job element = context.Jobs.FirstOrDefault(rec => rec.Id == model.Id);
                 try
                 {
-                    Job element = context.Jobs.FirstOrDefault(rec => rec.Id == model.Id);
                     if (element == null)
                     {
                         throw new Exception("Элемент не найден");
@@ -160,16 +183,55 @@ namespace AbstractSweetShopServiceImplementDataBase.Implementations
                             throw new Exception("Не достаточно компонента " + CandyMaterial.Material.MaterialName + " требуется " + CandyMaterial.Count + ", не хватает " + countOnStores);
                         }
                     }
+                    //element.Executor = context.Executors.First(rec => element.ExecutorId == element.ExecutorId);
+                    element.ExecutorId = model.ExecutorId;
                     element.DateImplement = DateTime.Now;
                     element.Status = JobStatus.Выполняется;
                     context.SaveChanges();
+                    SendEmail(element.Buyer.Mail, "Оповещение по заказам", string.Format("Заказ №{0} от {1} передеан в работу", element.Id, element.DateCreate.ToShortDateString()));
                     transaction.Commit();
                 }
                 catch (Exception)
                 {
                     transaction.Rollback();
+                    element.Status = JobStatus.НедостаточноРесурсов;
+                    context.SaveChanges();
+                    transaction.Commit();
                     throw;
                 }
+            }
+        }
+
+        private void SendEmail(string mailAddress, string subject, string text)
+        {
+            MailMessage objMailMessage = new MailMessage();
+            SmtpClient objSmtpClient = null;
+            try
+            {
+                objMailMessage.From = new
+                MailAddress(ConfigurationManager.AppSettings["MailLogin"]);
+                objMailMessage.To.Add(new MailAddress(mailAddress));
+                objMailMessage.Subject = subject;
+                objMailMessage.Body = text;
+                objMailMessage.SubjectEncoding = System.Text.Encoding.UTF8;
+                objMailMessage.BodyEncoding = System.Text.Encoding.UTF8;
+                objSmtpClient = new SmtpClient("smtp.gmail.com", 587);
+                objSmtpClient.UseDefaultCredentials = false;
+                objSmtpClient.EnableSsl = true;
+                objSmtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+                objSmtpClient.Credentials = new
+                NetworkCredential(ConfigurationManager.AppSettings["MailLogin"],
+                ConfigurationManager.AppSettings["MailPassword"]);
+                objSmtpClient.Send(objMailMessage);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                objMailMessage = null;
+                objSmtpClient = null;
             }
         }
     }

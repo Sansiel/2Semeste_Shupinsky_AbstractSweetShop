@@ -13,6 +13,7 @@ namespace AbstractSweetShopView
         public FormBuyerJobs()
         {
             InitializeComponent();
+
         }
         private void buttonMake_Click(object sender, EventArgs e)
         {

@@ -1,31 +1,24 @@
-﻿@model AbstractSweetShopServiceDAL.BindingModels.JobBindingModel
+﻿@model AbstractSweetShopServiceDAL.BindingModels.CandyMaterialBindingModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "AddMaterial";
 }
 
-<h2>Create</h2>
+<h2>AddMaterial</h2>
 
 
-@using (Html.BeginForm("CreatePost", "Main", FormMethod.Post)) 
+@using (Html.BeginForm("AddMaterialPost", "Candy", FormMethod.Post)) 
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>JobBindingModel</h4>
+        <h4>CandyMaterialBindingModel</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.BuyerId, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.MaterialName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("BuyerId", ViewBag.Buyers as SelectList)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CandyId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("CandyId", ViewBag.Candyes as SelectList)
+                @Html.DropDownList("MaterialId", ViewBag.Materials as SelectList)
             </div>
         </div>
 
@@ -36,6 +29,7 @@
                 @Html.ValidationMessageFor(model => model.Count, "", new { @class = "text-danger" })
             </div>
         </div>
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
@@ -45,7 +39,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Create")
 </div>
 
 @section Scripts {

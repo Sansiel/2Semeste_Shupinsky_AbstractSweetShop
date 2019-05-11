@@ -204,12 +204,18 @@
     <Content Include="Views\Buyer\Edit.cshtml" />
     <Content Include="Views\Buyer\Index.cshtml" />
     <Content Include="Views\Main\Create.cshtml" />
+    <Content Include="Views\Main\Index.cshtml" />
+    <Content Include="Views\Material\Create.cshtml" />
+    <Content Include="Views\Material\Edit.cshtml" />
+    <Content Include="Views\Material\Index.cshtml" />
+    <Content Include="Views\Candy\Create.cshtml" />
+    <Content Include="Views\Candy\Edit.cshtml" />
+    <Content Include="Views\Candy\Index.cshtml" />
+    <Content Include="Views\Candy\AddMaterial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Candy\" />
-    <Folder Include="Views\Material\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

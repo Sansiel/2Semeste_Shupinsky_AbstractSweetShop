@@ -35,7 +35,7 @@ namespace AbstractSweetShopServiceImplementDataBase.Implementations
             context.Jobs.Add(job);
             context.SaveChanges();
             var buyer = context.Buyers.FirstOrDefault(x => x.Id == model.BuyerId);
-            SendEmail(buyer.Mail, "Оповещение по заказам", string.Format("Заказ №{0} от { 1} создан успешно", job.Id, job.DateCreate.ToShortDateString()));
+            SendEmail(buyer.Mail, "Оповещение по заказам", string.Format("Заказ №{0} от {1} создан успешно", job.Id, job.DateCreate.ToShortDateString()));
         }
 
         public void FinishJob(JobBindingModel model)

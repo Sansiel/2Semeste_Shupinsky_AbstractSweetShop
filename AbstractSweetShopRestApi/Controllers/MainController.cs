@@ -69,5 +69,16 @@ namespace AbstractSweetShopRestApi.Controllers
                 new WorkExecutor(_service, _serviceExecutorr, exec.Id, job.Id);
             }
         }
+        [HttpGet]
+        public IHttpActionResult GetInfo()
+        {
+            ReflectionService service = new ReflectionService();
+            var list = service.GetInfoByAssembly();
+            if (list == null)
+            {
+                InternalServerError(new Exception("Нет данных"));
+            }
+            return Ok(list);
+        }
     }
 }

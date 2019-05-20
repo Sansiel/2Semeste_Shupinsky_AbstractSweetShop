@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributies\CustomInterfaceAttribute.cs" />
+    <Compile Include="Attributies\CustomMethodAttribute.cs" />
     <Compile Include="BindingModels\BuyerBindingModel.cs" />
     <Compile Include="BindingModels\CandyBindingModel.cs" />
     <Compile Include="BindingModels\CandyMaterialBindingModel.cs" />

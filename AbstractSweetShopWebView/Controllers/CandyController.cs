@@ -2,8 +2,6 @@
 using AbstractSweetShopServiceDAL.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace AbstractSweetShopWebView.Controllers
@@ -28,9 +26,9 @@ namespace AbstractSweetShopWebView.Controllers
         {
             if (Session["Candy"] == null)
             {
-                var dress = new CandyBindingModel();
-                dress.CandyMaterials = new List<CandyMaterialBindingModel>();
-                Session["Candy"] = dress;
+                var candy = new CandyBindingModel();
+                candy.CandyMaterials = new List<CandyMaterialBindingModel>();
+                Session["Candy"] = candy;
             }
             return View((CandyBindingModel)Session["Candy"]);
         }
@@ -38,12 +36,12 @@ namespace AbstractSweetShopWebView.Controllers
         [HttpPost]
         public ActionResult CreatePost()
         {
-            var dress = (CandyBindingModel)Session["Candy"];
+            var candy = (CandyBindingModel)Session["Candy"];
 
-            dress.CandyName = Request["CandyName"];
-            dress.Price = Convert.ToDecimal(Request["Price"]);
+            candy.CandyName = Request["CandyName"];
+            candy.Price = Convert.ToDecimal(Request["Price"]);
 
-            _service.AddElement(dress);
+            _service.AddElement(candy);
 
             Session.Remove("Candy");
 
@@ -60,16 +58,16 @@ namespace AbstractSweetShopWebView.Controllers
         [HttpPost]
         public ActionResult AddMaterialPost()
         {
-            var dress = (CandyBindingModel)Session["Candy"];
+            var candy = (CandyBindingModel)Session["Candy"];
             var material = new CandyMaterialBindingModel
             {
-                CandyId = dress.Id,
+                CandyId = candy.Id,
                 MaterialId = int.Parse(Request["MaterialId"]),
                 MaterialName = _matService.GetElement(int.Parse(Request["MaterialId"])).MaterialName,
                 Count = int.Parse(Request["Count"])
             };
-            dress.CandyMaterials.Add(material);
-            Session["Candy"] = dress;
+            candy.CandyMaterials.Add(material);
+            Session["Candy"] = candy;
             return RedirectToAction("Create");
         }
 

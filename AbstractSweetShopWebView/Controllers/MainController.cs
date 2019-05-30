@@ -41,7 +41,7 @@ namespace AbstractSweetShopWebView.Controllers
             var count = int.Parse(Request["Count"]);
             var sum = CalcSum(candyId, count);
 
-            _service.CreateOrder(new JobBindingModel
+            _service.CreateJob(new JobBindingModel
             {
                 BuyerId = buyerId,
                 CandyId = candyId,
@@ -65,13 +65,13 @@ namespace AbstractSweetShopWebView.Controllers
                 switch (status)
                 {
                     case "Processing":
-                        _service.TakeOrderInWork(new JobBindingModel { Id = id });
+                        _service.TakeJobInWork(new JobBindingModel { Id = id });
                         break;
                     case "Ready":
-                        _service.FinishOrder(new JobBindingModel { Id = id });
+                        _service.FinishJob(new JobBindingModel { Id = id });
                         break;
                     case "Paid":
-                        _service.PayOrder(new JobBindingModel { Id = id });
+                        _service.PayJob(new JobBindingModel { Id = id });
                         break;
                 }
             }

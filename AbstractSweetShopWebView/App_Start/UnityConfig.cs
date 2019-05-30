@@ -1,5 +1,5 @@
 using AbstractSweetShopServiceDAL.Interfaces;
-using AbstractSweetShopServiceImplementList.Implemetations;
+using AbstractSweetShopServiceImplementDataBase.Implementations;
 using System;
 
 using Unity;
@@ -39,11 +39,11 @@ namespace AbstractSweetShopWebView
         /// </remarks>
         public static void RegisterTypes(IUnityContainer container)
         {
-            container.RegisterType<ICandyService, CandyServiceList>(new HierarchicalLifetimeManager());
-            container.RegisterType<IMaterialService, MaterialServiceList>(new HierarchicalLifetimeManager());
-            container.RegisterType<IBuyerService, BuyerServiceList>(new HierarchicalLifetimeManager());
-            container.RegisterType<IMainService, MainServiceList>(new HierarchicalLifetimeManager());
-            container.RegisterType<IStoreService, StoreServiceList>(new HierarchicalLifetimeManager());
+            container.RegisterType<ICandyService, CandyServiceDB>(new HierarchicalLifetimeManager());
+            container.RegisterType<IMaterialService, MaterialServiceDB>(new HierarchicalLifetimeManager());
+            container.RegisterType<IBuyerService, BuyerServiceDB>(new HierarchicalLifetimeManager());
+            container.RegisterType<IMainService, MainServiceDB>(new HierarchicalLifetimeManager());
+            container.RegisterType<IStoreService, StoreServiceDB>(new HierarchicalLifetimeManager());
             // NOTE: To load from web.config uncomment the line below.
             // Make sure to add a Unity.Configuration to the using statements.
             // container.LoadConfiguration();

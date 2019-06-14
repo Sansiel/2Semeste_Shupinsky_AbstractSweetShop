@@ -87,7 +87,7 @@ namespace AbstractSweetShopView
         private void FormBuyerJobs_Load(object sender, EventArgs e)
         {
 
-            this.reportViewer1.RefreshReport();
+            this.reportViewer.RefreshReport();
         }
     }
 }

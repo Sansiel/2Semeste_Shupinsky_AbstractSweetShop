@@ -44,6 +44,7 @@ namespace AbstractSweetShopWebView
             container.RegisterType<IBuyerService, BuyerServiceDB>(new HierarchicalLifetimeManager());
             container.RegisterType<IMainService, MainServiceDB>(new HierarchicalLifetimeManager());
             container.RegisterType<IStoreService, StoreServiceDB>(new HierarchicalLifetimeManager());
+            container.RegisterType<IReportService, ReportServiceDB>(new HierarchicalLifetimeManager());
             // NOTE: To load from web.config uncomment the line below.
             // Make sure to add a Unity.Configuration to the using statements.
             // container.LoadConfiguration();

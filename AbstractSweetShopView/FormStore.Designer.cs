@@ -31,6 +31,11 @@
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.storeMaterialViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.textBoxName = new System.Windows.Forms.TextBox();
+            this.buttonCancel = new System.Windows.Forms.Button();
+            this.buttonSave = new System.Windows.Forms.Button();
+            this.storeMaterialViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.storeIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,6 +48,7 @@
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.storeMaterialViewModelBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.storeMaterialViewModelBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.materialViewModelBindingSource)).BeginInit();
@@ -67,7 +73,7 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Материалы";
             // 
-            // dataGridView
+            // storeMaterialViewModelBindingSource
             // 
             this.dataGridView.AutoGenerateColumns = false;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -164,6 +170,7 @@
             this.Text = "Склад";
             this.Load += new System.EventHandler(this.FormStore_Load);
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.storeMaterialViewModelBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.storeMaterialViewModelBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.materialViewModelBindingSource)).EndInit();

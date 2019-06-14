@@ -220,11 +220,11 @@
     <Content Include="Views\Store\Index.cshtml" />
     <Content Include="Views\Store\AddMaterial.cshtml" />
     <Content Include="Views\Store\Details.cshtml" />
+    <Content Include="Views\Report\BuyerJobs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Report\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

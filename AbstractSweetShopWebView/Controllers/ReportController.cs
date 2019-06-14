@@ -14,60 +14,41 @@ namespace AbstractSweetShopWebView.Controllers
         {
             _service = service;
         }
-        // GET: Report
-        public ActionResult Index()
+
+        [HttpGet]
+        public FileResult SavePriceList()
+        {
+            ReportBindingModel model = new ReportBindingModel { FileName = @"C:\Users\user\Documents\test.docx" };
+            _service.SaveCandyPrice(model);
+            byte[] fileBytes = System.IO.File.ReadAllBytes(model.FileName);
+            string fileName = "test.docx";
+            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
+        }
+
+        [HttpGet]
+        public FileResult SaveToExcel()
+        {
+            ReportBindingModel model = new ReportBindingModel { FileName = @"C:\Users\user\Documents\test.xls" };
+            _service.SaveStoreLoad(model);
+            byte[] fileBytes = System.IO.File.ReadAllBytes(model.FileName);
+            string fileName = "test.xls";
+            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
+        }
+
+        [HttpPost]
+        public FileResult SaveToPdf (ReportBindingModel model)
+        {
+            model.FileName = @"C:\Users\user\Documents\test.pdf";
+            _service.SaveBuyerJobs(model);
+            byte[] fileBytes = System.IO.File.ReadAllBytes(model.FileName);
+            string fileName = "test.pdf";
+            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
+        }
+
+        [HttpGet]
+        public ActionResult DesignerRequests()
         {
             return View();
-        }
-
-        public ActionResult SavePriceList()
-        {
-            SaveFileDialog sfd = new SaveFileDialog
-            {
-                Filter = "doc|*.doc|docx|*.docx"
-            };
-            if (sfd.ShowDialog() == DialogResult.OK)
-            {
-                _service.SaveCandyPrice(new ReportBindingModel
-                {
-                    FileName = sfd.FileName
-                });
-            }
-            return RedirectToAction("Index", "Order");
-        }
-
-        public ActionResult SaveToExcel()
-        {
-            SaveFileDialog sfd = new SaveFileDialog
-            {
-                Filter = "xls|*.xls|xlsx|*.xlsx"
-            };
-            if (sfd.ShowDialog() == DialogResult.OK)
-            {
-                _service.SaveStoreLoad(new ReportBindingModel
-                {
-                    FileName = sfd.FileName
-                });
-            }
-            return RedirectToAction("Index", "Order");
-        }
-
-        public ActionResult SaveToPdf()
-        {
-            SaveFileDialog sfd = new SaveFileDialog
-            {
-                Filter = "pdf|*.pdf"
-            };
-            if (sfd.ShowDialog() == DialogResult.OK)
-            {
-                _service.SaveBuyerJobs(new ReportBindingModel
-                {
-                    FileName = sfd.FileName,
-                    DateFrom = new DateTime(2018, 1, 1),
-                    DateTo = DateTime.Now
-                });
-            }
-            return RedirectToAction("Index", "Order");
         }
     }
 }

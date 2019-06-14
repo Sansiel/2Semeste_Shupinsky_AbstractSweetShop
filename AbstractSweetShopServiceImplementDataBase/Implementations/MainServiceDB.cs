@@ -49,6 +49,7 @@ namespace AbstractSweetShopServiceImplementDataBase.Implementations
 
         public List<JobViewModel> GetList()
         {
+
             List<JobViewModel> result = context.Jobs.Select(rec => new JobViewModel
             {
                 Id = rec.Id,

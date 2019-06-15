@@ -239,6 +239,7 @@ namespace AbstractSweetShopServiceImplementDataBase.Implementations
             finally
             {
                 //закрываем
+                excel.Workbooks[1].Close(false, Type.Missing, Type.Missing);
                 excel.Quit();
             }
         }

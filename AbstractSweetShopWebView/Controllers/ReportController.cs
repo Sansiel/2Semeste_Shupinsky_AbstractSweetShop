@@ -35,20 +35,20 @@ namespace AbstractSweetShopWebView.Controllers
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
         }
 
+        [HttpGet]
+        public ActionResult BuyerJobs()
+        {
+            return View();
+        }
+
         [HttpPost]
-        public FileResult SaveToPdf (ReportBindingModel model)
+        public FileResult BuyerJobs(ReportBindingModel model)
         {
             model.FileName = @"C:\Users\user\Documents\test.pdf";
             _service.SaveBuyerJobs(model);
             byte[] fileBytes = System.IO.File.ReadAllBytes(model.FileName);
             string fileName = "test.pdf";
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
-        }
-
-        [HttpGet]
-        public ActionResult DesignerRequests()
-        {
-            return View();
         }
     }
 }
